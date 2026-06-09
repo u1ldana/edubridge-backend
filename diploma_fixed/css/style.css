@@ -1903,20 +1903,9 @@ body[data-page="specialties"] .search-bar button {
 }
 
 
-/* ── MOBILE FIXES ── */
 @media (max-width: 480px) {
-  .header-inner {
-    flex-wrap: wrap;
-    min-height: auto;
-    padding: 14px 0;
-    gap: 10px;
-  }
-  .nav {
-    order: 3;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 10px 16px;
-  }
+  .header-inner { flex-wrap: wrap; min-height: auto; padding: 14px 0; gap: 10px; }
+  .nav { order: 3; width: 100%; flex-wrap: wrap; gap: 10px 16px; }
   .nav a { font-size: 0.85rem; }
   .header-actions { order: 2; margin-left: auto; }
   .logo { font-size: 1.1rem; }
