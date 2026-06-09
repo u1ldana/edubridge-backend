@@ -221,27 +221,31 @@
     <section class="chat-page">
       <div class="container">
         <div class="chat-hero">
-          <h1>Сұрағыңды қой 🤖</h1>
-          <p>Түркия университеттері, грант шарттары, мамандық таңдау — барлығы туралы сұра.</p>
-        </div>
+          <h1 data-i18n="Сұрағыңды қой 🤖">Сұрағыңды қой 🤖</h1>
+          <p data-i18n="Түркия университеттері, грант шарттары, мамандық таңдау — барлығы туралы сұра.">
+          </div>
 
         <div class="chat-container">
           <!-- Info cards -->
           <div class="chat-info-cards">
             <div class="chat-info-card">
               <div class="icon">🏛️</div>
-              <h3>Университет кеңесі</h3>
-              <p>Сенің профиліңе сай университеттерді табамын</p>
+              <h3 data-i18n="Университет кеңесі">Университет кеңесі</h3>
+              <p data-i18n="Сенің профиліңе сай университеттерді табамын">
+                Сенің профиліңе сай университеттерді табамын
+              </p>
             </div>
             <div class="chat-info-card">
               <div class="icon">🎓</div>
-              <h3>Грант туралы</h3>
-              <p>Türkiye Bursları шарттарын түсіндіремін</p>
+              <h3 data-i18n="Грант туралы">Грант туралы</h3>
+              <p data-i18n="Türkiye Bursları шарттарын түсіндіремін">
             </div>
             <div class="chat-info-card">
               <div class="icon">📋</div>
-              <h3>Құжат тізімі</h3>
-              <p>Нақты не дайындау керегін айтамын</p>
+              <h3 data-i18n="Құжат тізімі">Құжат тізімі</h3>
+              <p data-i18n="Нақты не дайындау керегін айтамын">
+                Нақты не дайындау керегін айтамын
+              </p>
             </div>
           </div>
 
@@ -251,21 +255,27 @@
               <div class="msg ai">
                 <div class="msg-avatar">🤖</div>
                 <div class="msg-bubble">
-                  Сәлем! Мен EduBridge AI кеңесшісімін 👋<br><br>
-                  Түркия университеттеріне түсу туралы кез-келген сұрағыңды қоя аласың. Грант шарттары, мамандық таңдау, құжат дайындау — барлығына жауап беремін!
+                  <span data-i18n="Сәлем! Мен EduBridge AI кеңесшісімін 👋">
+                    Сәлем! Мен EduBridge AI кеңесшісімін 👋
+                  </span>
+                  <br><br>
+                  <span data-i18n="Түркия университеттеріне түсу туралы кез-келген сұрағыңды қоя аласың. Грант шарттары, мамандық таңдау, құжат дайындау — барлығына жауап беремін!">
+                    Түркия университеттеріне түсу туралы кез-келген сұрағыңды қоя аласың. Грант шарттары, мамандық таңдау, құжат дайындау — барлығына жауап беремін!
+                  </span>
                 </div>
               </div>
             </div>
 
             <div class="chat-input-row">
               <textarea
-                class="chat-input"
-                id="chatInput"
-                placeholder="Сұрағыңды жаз... (мысалы: Компьютер ғылымы бойынша қай университет жақсы?)"
-                rows="1"
-                onkeydown="handleChatKey(event)"
-                oninput="autoResize(this)"
-              ></textarea>
+    class="chat-input"
+    id="chatInput"
+    data-i18n-placeholder="Сұрағыңды жаз... (мысалы: Компьютер ғылымы бойынша қай университет жақсы?)"
+    placeholder="Сұрағыңды жаз... (мысалы: Компьютер ғылымы бойынша қай университет жақсы?)"
+    rows="1"
+    onkeydown="handleChatKey(event)"
+    oninput="autoResize(this)"
+></textarea>
               <button class="chat-send-btn" id="sendBtn" onclick="sendMessage()" title="Жіберу">
                 ➤
               </button>
@@ -274,7 +284,44 @@
 
           <!-- Quick questions -->
           <div class="quick-btns" id="quickBtns">
-            <button class="quick-btn" onclick="askQuick(this)">🎓 Türkiye Bursları дегеніміз не?</button>
+
+            <button class="quick-btn"
+                    data-i18n="🎓 Türkiye Bursları дегеніміз не?"
+                    onclick="askQuick(this)">
+              🎓 Türkiye Bursları дегеніміз не?
+            </button>
+          
+            <button class="quick-btn"
+                    data-i18n="🏛️ Ең жақсы IT университеттер"
+                    onclick="askQuick(this)">
+              🏛️ Ең жақсы IT университеттер
+            </button>
+          
+            <button class="quick-btn"
+                    data-i18n="📋 Грантқа қандай құжат керек?"
+                    onclick="askQuick(this)">
+              📋 Грантқа қандай құжат керек?
+            </button>
+          
+            <button class="quick-btn"
+                    data-i18n="💰 Түркияда оқу қанша тұрады?"
+                    onclick="askQuick(this)">
+              💰 Түркияда оқу қанша тұрады?
+            </button>
+          
+            <button class="quick-btn"
+                    data-i18n="📅 Өтінім дедлайндары қашан?"
+                    onclick="askQuick(this)">
+              📅 Өтінім дедлайндары қашан?
+            </button>
+          
+            <button class="quick-btn"
+                    data-i18n="🗣️ Интервьюге қалай дайындалу керек?"
+                    onclick="askQuick(this)">
+              🗣️ Интервьюге қалай дайындалу керек?
+            </button>
+          
+          </div>            <button class="quick-btn" onclick="askQuick(this)">🎓 Türkiye Bursları дегеніміз не?</button>
             <button class="quick-btn" onclick="askQuick(this)">🏛️ Ең жақсы IT университеттер</button>
             <button class="quick-btn" onclick="askQuick(this)">📋 Грантқа қандай құжат керек?</button>
             <button class="quick-btn" onclick="askQuick(this)">💰 Түркияда оқу қанша тұрады?</button>
@@ -319,6 +366,8 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="js/config.js"></script>
   <script src="js/database.js"></script>
   <script src="js/script.js"></script>
   <script>
@@ -688,9 +737,10 @@ if (!groqKey && !geminiKey && !anthropicKey) {
       document.getElementById('chatInput').focus();
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="js/backend-client.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="js/backend-client.js"></script>
 
-  <script src="js/i18n-core.js"></script>
-  <script src="js/i18n-chat.js"></script>
+
+<script src="js/i18n-core.js"></script>
+<script src="js/i18n-chat.js"></script>
 </body>
