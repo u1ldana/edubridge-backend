@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Sabancı University | EduBridge Türkiye</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body data-page="sabanci">
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">
+      EduBridge <span>Türkiye</span>
+    </a>
+
+    <nav class="nav">
+      <a href="../index.html" data-i18n="nav-home">Басты бет</a>
+      <a href="../specialties.html" data-i18n="nav-specialties">Мамандықтар</a>
+      <a href="../universities.html" data-i18n="nav-universities">Университеттер</a>
+      <a href="../preparation.html" data-i18n="nav-preparation">Дайындық</a>
+      <a href="../feed.html" data-i18n="nav-feed">Лента</a>
+        
+        
+    </nav>
+
+    <div class="header-actions">
+      <div class="language-dropdown">
+        <button type="button" class="language-btn" onclick="toggleLanguageMenu()">
+          <span data-i18n="nav-language">Тіл</span>
+          <span class="arrow">▾</span>
+        </button>
+
+        <div class="language-menu" id="languageMenu">
+          <a href="#" onclick="setLang('kz'); return false;">Қазақша</a>
+          <a href="#" onclick="setLang('ru'); return false;">Русский</a>
+          <a href="#" onclick="setLang('en'); return false;">English</a>
+            <a href="#" onclick="setLang('tr'); return false;">Türkçe</a>
+        </div>
+      </div>
+
+      <a href="../profile.html" class="btn btn-primary ">
+        <span data-i18n="nav-profile">Профиль</span>
+
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="university-hero">
+    <div class="container university-hero-grid">
+
+      <div class="university-hero-text">
+        <a href="../universities.html" class="back-link"><span data-i18n="back-btn">← Университеттерге қайту</span></a>
+
+        <span class="section-label">Sabancı University</span>
+
+        <h1>Sabancı University</h1>
+
+        <p class="university-subtitle">
+          Istanbul, Türkiye · Private University · English medium programs
+        </p>
+
+        <p>
+          Sabancı University — Стамбұлдағы заманауи және беделді университеттердің бірі.
+          Университет interdisciplinary білім беру моделін ұсынады және Engineering,
+          Arts and Social Sciences, Business бағыттарымен танымал.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="../profile.html" class="btn btn-primary "><span data-i18n="apply-btn">Профиль / Apply</span></a>
+
+          <a href="../universities.html" class="btn btn-secondary"><span data-i18n="back-btn-alt">Артқа қайту</span></a>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="saveSabanciBtn"
+            onclick="toggleFavoriteUniversity('sabanci')"
+          ><span data-i18n="save-university-btn">Таңдаулыға сақтау</span></button>
+        </div>
+      </div>
+
+      <div class="university-hero-image">
+        <img src="../images/sabanci.jpg" alt="Sabancı University Campus" />
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container info-cards-grid">
+
+      <div class="info-card">
+        <h3><span data-i18n="info-location-title">Орналасуы</span></h3>
+        <p>Istanbul, Tuzla</p>
+      </div>
+
+      <div class="info-card">
+        <h3><span data-i18n="info-type-title">Түрі</span></h3>
+        <p>Private Foundation University</p>
+      </div>
+
+      <div class="info-card">
+        <h3><span data-i18n="info-language-title">Оқыту тілі</span></h3>
+        <p>English</p>
+      </div>
+
+      <div class="info-card">
+        <h3><span data-i18n="info-levels-title">Деңгейлер</span></h3>
+        <p>Bachelor, Master, PhD</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container details-layout">
+
+      <div class="details-main">
+
+        <div class="content-box">
+          <h2><span data-i18n="why-title">Неге осы университет?</span></h2>
+
+          <ul class="styled-list">
+            <li>Interdisciplinary academic model</li>
+            <li>Strong engineering and business programs</li>
+            <li>International student admissions support</li>
+            <li>Scholarship opportunities for international applicants</li>
+            <li>Modern campus and active student life</li>
+          </ul>
+        </div>
+
+        <div class="content-box">
+          <h2><span data-i18n="req-title">Admission requirements</span></h2>
+
+          <ul class="styled-list">
+            <li>Passport copy</li>
+            <li>High school diploma / certificate</li>
+            <li>Transcript</li>
+            <li>Accepted exam or diploma results if required</li>
+            <li>English proficiency document or university language exam</li>
+            <li>Online application form</li>
+          </ul>
+        </div>
+
+        <div class="content-box">
+          <h2><span data-i18n="majors-title">Мамандықтар</span></h2>
+
+          <h3 class="subheading">
+            Faculty of Engineering and Natural Sciences
+          </h3>
+
+          <div class="programs-grid">
+            <div class="program-pill">Computer Science and Engineering</div>
+            <div class="program-pill">Data Science and Analytics</div>
+            <div class="program-pill">Electronics Engineering</div>
+            <div class="program-pill">Industrial Engineering</div>
+            <div class="program-pill">Materials Science and Nano Engineering</div>
+            <div class="program-pill">Mechatronics Engineering</div>
+            <div class="program-pill">Molecular Biology, Genetics and Bioengineering</div>
+          </div>
+
+          <h3 class="subheading">
+            Faculty of Arts and Social Sciences
+          </h3>
+
+          <div class="programs-grid">
+            <div class="program-pill">Economics</div>
+            <div class="program-pill">Psychology</div>
+            <div class="program-pill">Political Science and International Relations</div>
+            <div class="program-pill">Visual Arts and Visual Communication Design</div>
+          </div>
+
+          <h3 class="subheading">
+            Sabancı Business School
+          </h3>
+
+          <div class="programs-grid">
+            <div class="program-pill">Management</div>
+          </div>
+        </div>
+
+        <div class="content-box">
+          <h2><span data-i18n="scholarship-title">Scholarships</span></h2>
+          <p>
+            International applicants may be automatically considered for admission scholarships.
+            Scholarship competition is limited and highly competitive.
+          </p>
+        </div>
+
+        <div class="content-box">
+          <h2><span data-i18n="accommodation-title">Accommodation</span></h2>
+          <p>
+            On-campus accommodation options are available.
+            Students may also choose private housing in Istanbul.
+          </p>
+        </div>
+
+      </div>
+
+      <aside class="details-side">
+
+        <div class="sidebar-box">
+          <h3><span data-i18n="quick-info-title">Қысқаша ақпарат</span></h3>
+
+          <div class="sidebar-list">
+            <div><strong>Қала:</strong> <span>Istanbul</span></div>
+            <div><strong>Түрі:</strong> <span>Private</span></div>
+            <div><strong>Тілі:</strong> <span>English</span></div>
+            <div><strong>Оқу форматы:</strong> <span>Full-time</span></div>
+          </div>
+        </div>
+
+        <div class="sidebar-box">
+          <h3>Әрекеттер</h3>
+
+          <a href="../profile.html" class="btn btn-primary full-width"><span data-i18n="apply-btn">Профиль / Apply</span></a>
+
+          <button
+            type="button"
+            class="btn btn-secondary full-width"
+            id="saveSabanciBtnSide"
+            onclick="toggleFavoriteUniversity('sabanci')"
+          ><span data-i18n="save-university-btn">Таңдаулыға сақтау</span></button>
+
+          <a href="../universities.html" class="btn btn-secondary full-width"><span data-i18n="all-universities-btn">Барлық университеттер</span></a>
+        </div>
+
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="logo footer-logo">
+        EduBridge <span>Türkiye</span>
+      </div>
+
+      <p>
+        © 2026 EduBridge Türkiye.
+        Барлық құқықтар қорғалған.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">Email</a>
+      <a href="#" data-i18n="footer-contact">Байланыс</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/database.js"></script>
+  <script src="../js/script.js"></script>
+
+<!--  -->
+<div id="aiBubble" style="
+  position:fixed; bottom:24px; right:24px; z-index:9998;
+  display:flex; flex-direction:column; align-items:flex-end; gap:12px;
+">
+  <!-- Chat window -->
+  <div id="aiChatWindow" style="
+    display:none;
+    width:340px; height:460px;
+    background:#1c0b13;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.6);
+    flex-direction:column;
+    animation:slideUp .25s ease;
+  ">
+    <div style="
+      background:linear-gradient(135deg,#a60f2d,#701930);
+      padding:14px 18px;
+      display:flex; justify-content:space-between; align-items:center;
+    ">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:32px;height:32px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;">🤖</div>
+        <div>
+          <div style="font-size:13px;font-weight:800;color:#fff;">EduBridge AI</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.7);">Онлайн · Жауап береді</div>
+        </div>
+      </div>
+      <button onclick="toggleAIBubble()" style="border:none;background:rgba(255,255,255,.15);color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;">✕</button>
+    </div>
+    <div id="aiBubbleMessages" style="
+      flex:1; overflow-y:auto; padding:16px;
+      display:flex; flex-direction:column; gap:10px;
+      height:340px;
+      scrollbar-width:thin;
+    ">
+      <div style="display:flex;gap:8px;align-items:flex-start;">
+        <div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div>
+        <div style="background:rgba(255,255,255,.08);border-radius:14px;border-top-left-radius:4px;padding:10px 13px;font-size:13px;color:#f3dfe4;line-height:1.5;max-width:240px;">
+          Сәлем! Мен EduBridge AI кеңесшісімін. Түркия университеттері туралы кез-келген сұрақты қой 👋
+        </div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;">
+      <input id="aiBubbleInput" type="text" placeholder="Сұрағыңды жаз..."
+        style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;padding:9px 12px;font-family:inherit;font-size:13px;outline:none;"
+        onkeydown="if(event.key==='Enter')sendAIBubble()"/>
+      <button onclick="sendAIBubble()" style="width:36px;height:36px;background:linear-gradient(135deg,#a60f2d,#701930);border:none;border-radius:10px;color:#fff;font-size:16px;cursor:pointer;">➤</button>
+    </div>
+  </div>
+
+  <!-- Bubble button -->
+  <button onclick="toggleAIBubble()" id="aiBubbleBtn" style="
+    width:56px; height:56px; border-radius:50%;
+    background:linear-gradient(135deg,#a60f2d,#701930);
+    border:none; cursor:pointer;
+    box-shadow:0 4px 20px rgba(166,15,45,.5);
+    font-size:24px;
+    display:flex; align-items:center; justify-content:center;
+    animation:pulseBubble 2.5s ease-in-out infinite;
+    position:relative;
+  " title="AI Кеңесші">
+    🤖
+    <span id="aiBubbleDot" style="
+      position:absolute; top:2px; right:2px;
+      width:12px; height:12px; background:#22c55e;
+      border-radius:50%; border:2px solid #1c0b13;
+    "></span>
+  </button>
+</div>
+
+<style>
+@keyframes pulseBubble {
+  0%,100%{transform:translateY(0);box-shadow:0 4px 20px rgba(166,15,45,.5);}
+  50%{transform:translateY(-4px);box-shadow:0 8px 28px rgba(166,15,45,.7);}
+}
+@keyframes slideUp {
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:none;}
+}
+#aiBubbleMessages::-webkit-scrollbar{width:3px;}
+#aiBubbleMessages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
+.ai-msg-user{display:flex;flex-direction:row-reverse;gap:8px;align-items:flex-start;}
+.ai-msg-user .ai-bubble{background:linear-gradient(135deg,#a60f2d,#701930);border-radius:14px;border-top-right-radius:4px;padding:10px 13px;font-size:13px;color:#fff;line-height:1.5;max-width:240px;}
+.ai-msg-bot{display:flex;gap:8px;align-items:flex-start;}
+.ai-msg-bot .ai-bubble{background:rgba(255,255,255,.08);border-radius:14px;border-top-left-radius:4px;padding:10px 13px;font-size:13px;color:#f3dfe4;line-height:1.5;max-width:240px;}
+</style>
+
+<script>
+var _aiIsOpen = false;
+var _aiIsLoading = false;
+var isOpen = _aiIsOpen;
+var isLoading = _aiIsLoading;
+
+var _aiBubbleOpen = false;
+function toggleAIBubble() {
+  _aiBubbleOpen = !_aiBubbleOpen;
+  var w = document.getElementById("aiChatWindow");
+  if (!w) return;
+  if (_aiBubbleOpen) {
+    w.style.display = "flex";
+    w.style.flexDirection = "column";
+    var inp = document.getElementById("aiBubbleInput");
+    if (inp) setTimeout(function(){ inp.focus(); }, 100);
+  } else {
+    w.style.display = "none";
+  }
+}
+window.toggleAIBubble = toggleAIBubble;
+
+window.sendAIBubble = async function() {
+  var input = document.getElementById("aiBubbleInput");
+  var text = (input?.value || "").trim();
+  if (!text || _aiIsLoading) return;
+  input.value = "";
+
+  var msgs = document.getElementById("aiBubbleMessages");
+  
+  // User message
+  var um = document.createElement("div");
+  um.className = "ai-msg-user";
+  um.innerHTML = '<div class="ai-bubble">' + text.replace(/</g,"&lt;") + "</div>";
+  msgs.appendChild(um);
+
+  // Typing
+  var typing = document.createElement("div");
+  typing.className = "ai-msg-bot";
+  typing.id = "aiTyping";
+  typing.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div><div class="ai-bubble"><span style="opacity:.6">●●●</span></div>';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  _aiIsLoading = true;
+
+  // Get API key - Gemini (тегін) немесе Anthropic
+  var geminiKey = (window.CONFIG && window.CONFIG.GEMINI_KEY) || localStorage.getItem("gemini_key") || "";
+  var anthropicKey = (window.CONFIG && window.CONFIG.ANTHROPIC_KEY) || localStorage.getItem("anthropic_key") || "";
+
+  var systemPrompt = (window.CONFIG && window.CONFIG.AI_SYSTEM) || 
+    "Сен EduBridge Türkiye платформасының AI кеңесшісісің. Түркия университеттері, грант, мамандық туралы сұрақтарға қысқа, нақты жауап бер. Қазақ тілінде жауап бер.";
+
+  try {
+    var reply = "";
+
+    var groqKey = (window.CONFIG && window.CONFIG.GROQ_KEY) || localStorage.getItem("groq_key") || "";
+
+    if (groqKey) {
+      // Groq (ТЕГІН, өте жылдам)
+      var groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + groqKey
+        },
+        body: JSON.stringify({
+          model: "llama-3.3-70b-versatile",
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user",   content: text }
+          ],
+          max_tokens: 400,
+          temperature: 0.7
+        })
+      });
+      var groqData = await groqRes.json();
+      if (groqData.error) throw new Error(groqData.error.message);
+      reply = groqData.choices?.[0]?.message?.content || "Жауап алынбады.";
+
+    } else if (geminiKey) {
+      // Google Gemini
+      var geminiRes = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" + geminiKey,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: systemPrompt + "\n\nСұрақ: " + text }] }],
+            generationConfig: { maxOutputTokens: 400, temperature: 0.7 }
+          })
+        }
+      );
+      var geminiData = await geminiRes.json();
+      if (geminiData.error) throw new Error(geminiData.error.message);
+      reply = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Жауап алынбады.";
+
+    } else if (anthropicKey) {
+      // Anthropic Claude (ақылы)
+      var anthRes = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "anthropic-version": "2023-06-01",
+          "x-api-key": anthropicKey,
+          "anthropic-dangerous-allow-browser": "true"
+        },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 400,
+          system: systemPrompt,
+          messages: [{ role: "user", content: text }]
+        })
+      });
+      var anthData = await anthRes.json();
+      if (anthData.error) throw new Error(anthData.error.message);
+      reply = anthData.content?.map(function(b){return b.text||"";}).join("") || "Жауап алынбады.";
+
+    } else {
+      reply = "⚙️ API key жоқ! js/config.js файлында GROQ_KEY қойылған — бірақ CONFIG жүктелмеген болуы мүмкін. Бетті жаңартып көріңіз.";
+    }
+
+    document.getElementById("aiTyping")?.remove();
+    var bm = document.createElement("div");
+    bm.className = "ai-msg-bot";
+    bm.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div><div class="ai-bubble">' + 
+      reply.replace(/\n/g,"<br>").replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>") + 
+      "</div>";
+    msgs.appendChild(bm);
+
+  } catch(e) {
+    document.getElementById("aiTyping")?.remove();
+    var em = document.createElement("div");
+    em.className = "ai-msg-bot";
+    em.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div><div class="ai-bubble" style="color:#f87171;">❌ Қате: ' + e.message + '<br><small>API key дұрыс па?</small></div>';
+    msgs.appendChild(em);
+  }
+
+  _aiIsLoading = false;
+  msgs.scrollTop = msgs.scrollHeight;
+};
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script src="../js/i18n-core.js"></script>
+  <script src="../js/i18n-sabanci.js"></script>
+
+</body>
