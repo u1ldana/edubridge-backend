@@ -1,0 +1,13 @@
+EmailJS config already added to js/config.js
+Public Key: s-Oc-msk3WpjImC1t
+Service ID: service_pk3u4ij
+Template ID: template_cehpndc
+
+EmailJS template recommended:
+To Email: {{email}}
+Subject: {{subject}}
+Body:
+Hello {{to_name}}
+Your verification code: {{code}}
+{{message}}
+EduBridge Türkiye

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>University | EduBridge Türkiye</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/style.css"/>
+<style>
+.detail-wrap{padding:80px 0}
+.detail-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+.detail-img{width:100%;height:360px;object-fit:cover;border-radius:26px}
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:42px 0}
+.info-card,.content-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:22px}
+.two-col{display:grid;grid-template-columns:1.4fr .6fr;gap:24px}
+.pill{display:inline-block;padding:9px 14px;border-radius:16px;background:rgba(255,255,255,.09);margin:5px}
+.btn-main{display:inline-block;padding:15px 24px;border-radius:16px;background:#b3123c;color:white;text-decoration:none;font-weight:900;margin-right:10px}
+.list{margin:0;padding-left:20px;line-height:1.8;color:rgba(255,255,255,.82)}
+@media(max-width:900px){.detail-hero,.two-col{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">EduBridge <span>Türkiye</span></a>
+    <nav class="nav">
+      <a href="../index.html"><span data-i18n="nav-home">Басты бет</span></a>
+      <a href="../specialties.html"><span data-i18n="nav-specialties">Мамандықтар</span></a>
+      <a href="../universities.html"><span data-i18n="nav-universities">Университеттер</span></a>
+      <a href="../preparation.html"><span data-i18n="nav-preparation">Дайындық</span></a>
+      <a href="../feed.html"><span data-i18n="nav-feed">Лента</span></a>
+    </nav>
+    <div class="header-actions">
+      <div class="language-dropdown">
+        <button type="button" class="language-btn" onclick="toggleLanguageMenu()">
+          <span data-i18n="nav-language">Тіл</span><span class="arrow">▾</span>
+        </button>
+        <div class="language-menu" id="languageMenu">
+          <a href="#" onclick="setLang('kz');return false;">🇰🇿 Қазақша</a>
+          <a href="#" onclick="setLang('ru');return false;">🇷🇺 Русский</a>
+          <a href="#" onclick="setLang('en');return false;">🇬🇧 English</a>
+          <a href="#" onclick="setLang('tr');return false;">🇹🇷 Türkçe</a>
+        </div>
+      </div>
+      <a href="profile.html" class="login-btn" id="headerLoginBtn"><span data-i18n="nav-profile">Профиль</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="detail-wrap">
+  <div class="container" id="detailRoot">
+    <p style="color:rgba(255,255,255,.5)">Жүктелуде...</p>
+  </div>
+</main>
+
+<script>
+  const API = window.BACKEND_URL || "http://localhost:3000";
+  
+  function J(k, f) {
+    try {
+      return JSON.parse(localStorage.getItem(k) || "") || f;
+    } catch (e) {
+      return f;
+    }
+  }
+  
+  function S(k, v) {
+    localStorage.setItem(k, JSON.stringify(v));
+  }
+  
+  function getSlug() {
+    return new URLSearchParams(location.search).get("slug") || "";
+  }
+  
+  function esc(s) {
+    return String(s || "").replace(/[&<>"']/g, m =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m])
+    );
+  }
+  
+  function lines(s) {
+    return String(s || "")
+      .split(/\n|;/)
+      .map(x => x.trim())
+      .filter(Boolean);
+  }
+  
+  function makeList(s) {
+    const a = lines(s);
+    return a.length
+      ? `<ul class="list">${a.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`
+      : `<p style="color:rgba(255,255,255,.5)">Көрсетілмеген</p>`;
+  }
+  
+  function pills(s) {
+    const a = String(s || "")
+      .split(",")
+      .map(x => x.trim())
+      .filter(Boolean);
+  
+    return a.length
+      ? a.map(x => `<span class="pill">${esc(x)}</span>`).join("")
+      : `<p style="color:rgba(255,255,255,.5)">Көрсетілмеген</p>`;
+  }
+  
+  function makeSlug(name) {
+    return String(name || "uni")
+      .toLowerCase()
+      .replace(/[^a-z0-9а-яёәғқңөұүһіçğıöşü]+/gi, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+  
+  function normalize(u) {
+    const slug = u.slug || makeSlug(u.name);
+  
+    return {
+      id: u.id || slug,
+      slug,
+      name: u.name || "",
+      city: u.city || "",
+      country: u.country || "Türkiye",
+      type: u.type || "",
+      language: u.language || "",
+      programs: u.programs || "",
+      description: u.description || "",
+      image_url: u.image_url || u.image || "",
+      tuition: u.tuition || "",
+      rating: u.rating || "",
+      accreditation: u.accreditation || "",
+      advantages: u.advantages || "",
+      campuses: u.campuses || "",
+      exchange_programs: u.exchange_programs || "",
+      website: u.website || "",
+      levels: u.levels || "",
+      why_choose: u.why_choose || "",
+      admission_requirements: u.admission_requirements || "",
+      majors: u.majors || "",
+      scholarships: u.scholarships || "",
+      accommodation: u.accommodation || "",
+      education_format: u.education_format || ""
+    };
+  }
+  
+  function getLocalUniversities() {
+    const staticList = Array.isArray(window.STATIC_UNIVERSITIES)
+      ? window.STATIC_UNIVERSITIES.map(normalize)
+      : [];
+  
+    const publicList = J("publicUniversities", []).map(normalize);
+    const adminList = J("adminUniversities", []).map(normalize);
+  
+    const map = new Map();
+  
+    staticList.forEach(u => map.set(u.slug, u));
+    publicList.forEach(u => map.set(u.slug, u));
+    adminList.forEach(u => map.set(u.slug, u));
+  
+    return Array.from(map.values());
+  }
+  
+  function findUniversity(list, slug) {
+    return list.find(x => String(x.slug || "") === String(slug)) || null;
+  }
+  
+  function renderNotFound(slug) {
+    const root = document.getElementById("detailRoot");
+  
+    root.innerHTML = `
+      <div style="text-align:center;padding:80px 0">
+        <h1 style="font-size:32px">Университет табылмады</h1>
+        <p style="color:rgba(255,255,255,.5);margin:16px 0">
+          Slug: <code>${esc(slug)}</code>
+        </p>
+        <a href="../universities.html" class="btn-main">← Университеттерге қайту</a>
+      </div>
+    `;
+  }
+  
+  function renderUniversity(u) {
+    const root = document.getElementById("detailRoot");
+  
+    document.title = `${u.name} | EduBridge Türkiye`;
+  
+    root.innerHTML = `
+      <div class="detail-hero">
+        <div>
+          <a href="../universities.html" style="color:rgba(255,255,255,.7);text-decoration:none;font-size:14px">
+            ← Университеттерге қайту
+          </a>
+  
+          <h1 style="font-size:48px;margin:24px 0 12px;line-height:1.1">
+            ${esc(u.name)}
+          </h1>
+  
+          <p style="color:#c9d6ff;margin-bottom:16px">
+            ${esc(u.city)} · ${esc(u.country || "Türkiye")} · ${esc(u.type)} · ${esc(u.language)}
+          </p>
+  
+          <p style="font-size:17px;line-height:1.7;max-width:680px;color:rgba(255,255,255,.85)">
+            ${esc(u.description || "")}
+          </p>
+  
+          <div style="margin-top:24px;display:flex;flex-wrap:wrap;gap:10px">
+            <a class="btn-main" href="../profile.html">Профиль / Apply</a>
+            <a class="btn-main" style="background:rgba(255,255,255,.1)" href="../universities.html">Артқа қайту</a>
+          </div>
+        </div>
+  
+        ${
+          u.image_url
+            ? `<img class="detail-img" src="${esc(u.image_url)}" alt="${esc(u.name)} Campus" onerror="this.style.display='none'">`
+            : `<div class="detail-img" style="display:flex;align-items:center;justify-content:center;font-size:80px;background:rgba(255,255,255,.08)">🏛</div>`
+        }
+      </div>
+  
+      <div class="info-grid">
+        <div class="info-card"><h3>Орналасуы</h3><p>${esc(u.city || "—")}</p></div>
+        <div class="info-card"><h3>Түрі</h3><p>${esc(u.type || "—")}</p></div>
+        <div class="info-card"><h3>Оқыту тілі</h3><p>${esc(u.language || "—")}</p></div>
+        <div class="info-card"><h3>Деңгейлер</h3><p>${esc(u.levels || "Bachelor, Master")}</p></div>
+      </div>
+  
+      <div class="two-col">
+        <div>
+          <div class="content-card">
+            <h2>Неге осы университет?</h2>
+            ${makeList(u.why_choose || u.description)}
+          </div>
+  
+          <div class="content-card" style="margin-top:22px">
+            <h2>Admission Requirements</h2>
+            ${makeList(u.admission_requirements)}
+          </div>
+  
+          <div class="content-card" style="margin-top:22px">
+            <h2>Мамандықтар / Faculties</h2>
+            ${makeList(u.majors || u.programs)}
+          </div>
+  
+          <div class="content-card" style="margin-top:22px">
+            <h2>Scholarships</h2>
+            <p style="line-height:1.7">${esc(u.scholarships || "Көрсетілмеген")}</p>
+          </div>
+  
+          <div class="content-card" style="margin-top:22px">
+            <h2>Accommodation</h2>
+            <p style="line-height:1.7">${esc(u.accommodation || "Көрсетілмеген")}</p>
+          </div>
+  
+          ${u.accreditation ? `<div class="content-card" style="margin-top:22px"><h2>Аккредитациялар</h2>${pills(u.accreditation)}</div>` : ""}
+          ${u.campuses ? `<div class="content-card" style="margin-top:22px"><h2>International Campuses</h2>${pills(u.campuses)}</div>` : ""}
+          ${u.exchange_programs ? `<div class="content-card" style="margin-top:22px"><h2>Exchange Programs</h2>${pills(u.exchange_programs)}</div>` : ""}
+        </div>
+  
+        <aside>
+          <div class="content-card">
+            <h2>Қысқаша ақпарат</h2>
+            <p><b>Қала:</b> ${esc(u.city || "—")}</p>
+            <p><b>Ел:</b> ${esc(u.country || "Türkiye")}</p>
+            <p><b>Түрі:</b> ${esc(u.type || "—")}</p>
+            <p><b>Тілі:</b> ${esc(u.language || "—")}</p>
+            <p><b>Оқу форматы:</b> ${esc(u.education_format || "Full-time")}</p>
+            ${u.tuition ? `<p><b>Tuition:</b> ${esc(u.tuition)}</p>` : ""}
+            ${u.rating ? `<p><b>Рейтинг:</b> ${esc(u.rating)}</p>` : ""}
+            ${u.website ? `<p><b>Website:</b> <a href="${esc(u.website)}" target="_blank" style="color:#c9d6ff">${esc(u.website)}</a></p>` : ""}
+          </div>
+  
+          ${u.advantages ? `<div class="content-card" style="margin-top:22px"><h2>Артықшылықтар</h2>${pills(u.advantages)}</div>` : ""}
+  
+          <div class="content-card" style="margin-top:22px">
+            <h2>Әрекеттер</h2>
+            <a class="btn-main" href="../profile.html" style="display:block;text-align:center;margin-bottom:10px">Профиль / Apply</a>
+            <a class="btn-main" href="../universities.html" style="background:rgba(255,255,255,.1);display:block;text-align:center">Барлық университеттер</a>
+          </div>
+        </aside>
+      </div>
+    `;
+  }
+  
+  async function fetchWithTimeout(url, ms = 1200) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), ms);
+  
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      clearTimeout(timer);
+      return res;
+    } catch (e) {
+      clearTimeout(timer);
+      throw e;
+    }
+  }
+  
+  async function init() {
+    const slug = getSlug();
+    const localList = getLocalUniversities();
+    const localUni = findUniversity(localList, slug);
+  
+    if (localUni) {
+      renderUniversity(localUni);
+    } else {
+      document.getElementById("detailRoot").innerHTML =
+        `<p style="color:rgba(255,255,255,.5)">Жүктелуде...</p>`;
+    }
+  
+    try {
+      const r = await fetchWithTimeout(API + "/api/universities", 1200);
+      const d = await r.json();
+  
+      if (d.ok && Array.isArray(d.universities)) {
+        const backendList = d.universities.map(normalize);
+        S("publicUniversities", backendList);
+        S("adminUniversities", backendList);
+  
+        const freshUni = findUniversity(backendList, slug);
+  
+        if (freshUni) {
+          renderUniversity(freshUni);
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn("Backend slow/unavailable, using localStorage");
+    }
+  
+    if (!localUni) {
+      renderNotFound(slug);
+    }
+  }
+  
+  document.addEventListener("DOMContentLoaded", init);
+  </script>
+
+  <script src="../js/i18n-core.js"></script>
+</body>
+</html>

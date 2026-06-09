@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="EduBridge Türkiye — Менің профилім">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | EduBridge Türkiye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .profile-form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .profile-field{display:flex;flex-direction:column;gap:8px;}
+    .profile-field.full{grid-column:1 / -1;}
+    .profile-field label{font-weight:800;color:#fff;opacity:.9;}
+    .profile-field input,.profile-field textarea,.profile-field select{width:100%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:#fff;border-radius:16px;padding:14px 16px;font-family:inherit;outline:none;}
+    .profile-field textarea{min-height:120px;resize:vertical;}
+    .profile-field input::placeholder,.profile-field textarea::placeholder{color:rgba(255,255,255,.55);}
+    .profile-field select option{color:#241016;}
+    .profile-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;}
+    .profile-mini-btn{border:none;border-radius:14px;padding:12px 16px;font-weight:800;cursor:pointer;font-family:inherit;}
+    .profile-mini-btn.primary{background:#b3123c;color:#fff;}
+    .profile-mini-btn.secondary{background:rgba(255,255,255,.12);color:#fff;}
+    .profile-mini-btn.danger{background:#fee2e2;color:#991b1b;}
+    .profile-check-row{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:16px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);margin-bottom:12px;}
+    .profile-check-left{display:flex;gap:12px;align-items:flex-start;}
+    .profile-check-left input{width:22px;height:22px;accent-color:#b3123c;margin-top:3px;}
+    .profile-check-left strong{display:block;color:#fff;margin-bottom:4px;}
+    .profile-check-left p{color:rgba(255,255,255,.68);margin:0;font-size:14px;}
+    .profile-empty{padding:18px;border-radius:18px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.75);}
+    .profile-toast{position:fixed;right:24px;bottom:24px;background:#b3123c;color:#fff;padding:14px 18px;border-radius:16px;font-weight:800;display:none;z-index:9999;box-shadow:0 20px 50px rgba(0,0,0,.25);}
+    @media(max-width:700px){.profile-form-grid{grid-template-columns:1fr;}.profile-check-row{flex-direction:column;align-items:flex-start;}}
+  </style>
+</head>
+ 
+<body data-page="profile">
+  <div class="bg-blur bg-blur-1"></div>
+  <div class="bg-blur bg-blur-2"></div>
+ 
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">EduBridge <span>Türkiye</span></a>
+      <nav class="nav">
+        <a href="index.html" data-i18n="nav-home">Басты бет</a>
+        <a href="specialties.html" data-i18n="nav-specialties">Мамандықтар</a>
+        <a href="universities.html" data-i18n="nav-universities">Университеттер</a>
+        <a href="preparation.html" data-i18n="nav-preparation">Дайындық</a>
+        <a href="feed.html" data-i18n="nav-feed">Лента</a>
+      </nav>
+      <div class="header-actions">
+        <div class="language-dropdown">
+          <button type="button" class="language-btn" onclick="toggleLanguageMenu()">
+            <span data-i18n="nav-language">Тіл</span>
+            <span class="arrow">▾</span>
+          </button>
+          <div class="language-menu" id="languageMenu">
+            <a href="#" onclick="setLang('kz'); return false;">🇰🇿 Қазақша</a>
+            <a href="#" onclick="setLang('ru'); return false;">🇷🇺 Русский</a>
+            <a href="#" onclick="setLang('en'); return false;">🇬🇧 English</a>
+            <a href="#" onclick="setLang('tr'); return false;">🇹🇷 Türkçe</a>
+          </div>
+        </div>
+        <a href="profile.html" class="login-btn active"><span data-i18n="nav-profile">Профиль</span></a>
+      </div>
+    </div>
+  </header>
+ 
+  <main class="profile-dashboard">
+    <div class="container profile-dashboard-grid">
+ 
+      <!-- ── SIDEBAR ── -->
+      <aside class="profile-sidebar glass">
+        <div class="profile-user-card">
+          <div class="profile-avatar" id="profileAvatar">S</div>
+          <div class="profile-user-text">
+            <h2 id="profileName">Студент</h2>
+            <p id="profileEmail">email@example.com</p>
+          </div>
+        </div>
+
+
+
+        
+        <div class="profile-menu">
+          <a href="#overview"       class="profile-menu-item active" data-i18n="pro-menu-overview">Шолу</a>
+          <a href="#editProfile"    class="profile-menu-item"        data-i18n="pro-menu-edit">Профильді өзгерту</a>
+          <a href="#consultations"  class="profile-menu-item"        data-i18n="pro-menu-consult">Консультациялар</a>
+          <a href="#documents"      class="profile-menu-item"        data-i18n="pro-menu-docs">Құжаттар</a>
+          <a href="#universities"   class="profile-menu-item"        data-i18n="pro-menu-unis">Таңдаулы университеттер</a>
+          <a href="#tasks"          class="profile-menu-item"        data-i18n="pro-menu-tasks">✅ Тапсырмалар</a>
+          <a href="#notifications"  class="profile-menu-item"        data-i18n="pro-menu-notifications">🔔 Ескертулер</a>
+          <a href="#deadlines"      class="profile-menu-item"        data-i18n="pro-menu-deadlines">Дедлайндар</a>
+          <a href="#notes"          class="profile-menu-item"        data-i18n="pro-menu-notes">Жазбалар</a>
+        </div>
+ 
+        <div class="profile-side-box">
+          <span class="small-label" data-i18n="pro-acc-status">Аккаунт статусы</span>
+          <strong class="side-box-value" id="profileStatusText" data-i18n="pro-acc-active">Белсенді</strong>
+        </div>
+        <div class="profile-side-box">
+          <span class="small-label" data-i18n="pro-acc-plan">Жоспар</span>
+          <strong class="side-box-value" data-i18n="pro-acc-plan-val">Студент кабинеті</strong>
+        </div>
+ 
+        <button type="button" class="btn btn-secondary full-width profile-logout" onclick="logout()" data-i18n="nav-logout">Шығу</button>
+        <button type="button" class="profile-mini-btn danger full-width" style="margin-top:12px;" onclick="resetFullProfile()" data-i18n="pro-reset-full">Профильді тазалау</button>
+      </aside>
+ 
+
+      
+      <!-- ── MAIN ── -->
+      <section class="profile-main">
+ 
+        <!-- OVERVIEW -->
+        <section class="profile-top glass" id="overview">
+          <div class="profile-top-left">
+            <span class="section-label" data-i18n="pro-dashboard">Басқару панелі</span>
+            <h1><span data-i18n="pro-welcome">Қош келдің,</span> <span id="profileWelcomeName">студент</span></h1>
+            <p data-i18n="pro-welcome-desc">Мұнда сенің таңдаулы университеттерің, құжаттарың, дедлайндарың, консультацияларың және дайындық прогресің бір жерде сақталады.</p>
+          </div>
+          <div class="profile-top-actions">
+            <a href="universities.html" class="btn btn-primary" data-i18n="qa-unis">Университеттер</a>
+            <a href="preparation.html"  class="btn btn-secondary" data-i18n="pro-prep-nav">Дайындық</a>
+          </div>
+          <div id="careerTestResult" style="display:none;margin-top:18px;padding:18px;border-radius:18px;background:rgba(179,18,60,.15);border:1px solid rgba(179,18,60,.3);">
+            <strong style="color:#ff6b8a;" data-i18n="career-result">🧠 Career Test нәтижесі:</strong>
+            <div id="careerTestResult" style="display:none;"></div>
+            <p id="careerResultText" style="margin:6px 0 0;color:#eee;"></p>
+            <small id="careerResultDate" style="color:rgba(255,255,255,.5);"></small>
+          </div>
+        </section>
+        
+ 
+        <!-- STATS -->
+        <section class="profile-stat-grid">
+          <div class="profile-stat-card glass">
+            <span class="stat-icon">🎓</span>
+            <div><h3 id="savedUniversitiesCount">0</h3><p data-i18n="pro-stat-unis">Таңдаулы университет</p></div>
+          </div>
+          <div class="profile-stat-card glass">
+            <span class="stat-icon">📂</span>
+            <div><h3 id="profileDocsPercent">0%</h3><p data-i18n="pro-stat-docs">Құжат прогресі</p></div>
+          </div>
+          <div class="profile-stat-card glass">
+            <span class="stat-icon">📞</span>
+            <div><h3 id="consultationsCount">0</h3><p data-i18n="pro-stat-consult">Консультация</p></div>
+          </div>
+          <div class="profile-stat-card glass">
+            <span class="stat-icon">⏳</span>
+            <div><h3 id="overallProfileProgress">0%</h3><p data-i18n="pro-stat-progress">Жалпы прогресс</p></div>
+          </div>
+        </section>
+ 
+        <!-- PREP PROGRESS -->
+        <section class="dashboard-panel glass" id="prepProgress" style="border-left:3px solid #a60f2d;">
+          <div class="dashboard-panel-head">
+            <h3 data-i18n="pro-prep-progress">📋 Дайындық прогресі</h3>
+            <a href="preparation.html" class="panel-link" data-i18n="pro-prep-link">Дайындыққа өту →</a>
+          </div>
+          <div id="profilePrepProgressBox" style="display:flex;flex-direction:column;gap:10px;"></div>
+        </section>
+ 
+        <!-- EDIT PROFILE -->
+        <section class="dashboard-panel glass" id="editProfile">
+          <div class="dashboard-panel-head">
+            <h3 data-i18n="pro-edit-title">Профиль ақпаратын өзгерту</h3>
+            <span class="badge success" data-i18n="pro-editable">Өзгертуге болады</span>
+          </div>
+ 
+          <div class="profile-form-grid">
+            <div class="profile-field">
+              <label data-i18n="pro-field-name">Атыңыз</label>
+              <input id="profileNameInput" placeholder="Меруерт" />
+            </div>
+            <div class="profile-field">
+              <label>Email</label>
+              <input id="profileEmailInput" placeholder="email@example.com" />
+            </div>
+            <div class="profile-field">
+              <label data-i18n="pro-field-city">Қала</label>
+              <input id="profileCityInput" placeholder="Almaty / Istanbul" />
+            </div>
+            <div class="profile-field">
+              <label data-i18n="pro-field-major">Қызығатын бағыт</label>
+              <select id="profileMajorInput">
+                <option>Computer Science</option>
+                <option>Data Science</option>
+                <option>Medicine</option>
+                <option>Dentistry</option>
+                <option>Business</option>
+                <option>Psychology</option>
+                <option>Architecture</option>
+                <option>International Relations</option>
+              </select>
+            </div>
+            <div class="profile-field full">
+              <label data-i18n="pro-field-goal">Мақсат</label>
+              <textarea id="profileGoalInput" placeholder="Мысалы: Түркияда грантқа түсу, жақсы университет таңдау..."></textarea>
+            </div>
+          </div>
+ 
+          <!-- Extra fields -->
+          <div class="profile-form-grid" style="margin-top:14px;">
+            <div class="profile-field">
+              <label data-i18n="pro-phone">📱 Телефон</label>
+              <input id="profilePhone" placeholder="+7 700 000 0000"/>
+            </div>
+            <div class="profile-field">
+              <label data-i18n="pro-country">🌍 Ел</label>
+              <input id="profileCountry" placeholder="Қазақстан"/>
+            </div>
+            <div class="profile-field">
+              <label data-i18n="pro-english">🗣️ Ағылшын деңгейі</label>
+              <select id="profileEnglish">
+                <option value="" data-i18n="pro-choose">Таңдаңыз</option>
+                <option data-i18n="level-a1">A1 — Бастауыш</option>
+                <option data-i18n="level-a2">A2 — Элементарлы</option>
+                <option data-i18n="level-b1">B1 — Орташа</option>
+                <option data-i18n="level-b2">B2 — Орташадан жоғары</option>
+                <option data-i18n="level-c1">C1 — Жетілдірілген</option>
+                <option data-i18n="level-c2">C2 — Кәсіби</option>
+                <option>IELTS 5.5+</option>
+                <option>IELTS 6.5+</option>
+                <option>TOEFL 65+</option>
+              </select>
+            </div>
+            <div class="profile-field">
+              <label data-i18n="pro-budget">💰 Жылдық бюджет ($)</label>
+              <input id="profileBudget" placeholder="10000" type="number"/>
+            </div>
+          </div>
+ 
+          <div class="profile-actions" style="margin-top:16px;">
+            <button class="profile-mini-btn primary"   onclick="saveProfileInfo()"   data-i18n="pro-save-btn">💾 Сақтау</button>
+            <button class="profile-mini-btn secondary" onclick="fillProfileExample()" data-i18n="pro-fill-example">Мысалмен толтыру</button>
+            <button class="profile-mini-btn danger"    onclick="resetProfileData()"  data-i18n="pro-clear-btn">Тазалау</button>
+          </div>
+ 
+          <!-- Password -->
+          <div style="margin-top:22px;padding:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;">
+            <h4 style="font-size:14px;font-weight:800;margin-bottom:14px;" data-i18n="pass-title">🔐 Парольді өзгерту</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+              <div>
+                <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;" data-i18n="pass-old">Ескі пароль</label>
+                <input type="password" id="oldPassword" placeholder="••••••••"
+                  style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:11px;color:#fff;padding:11px 13px;font-family:inherit;font-size:13px;outline:none;"/>
+              </div>
+              <div>
+                <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;" data-i18n="pass-new">Жаңа пароль</label>
+                <input type="password" id="newPassword" placeholder="Кем дегенде 6 символ"
+                  style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:11px;color:#fff;padding:11px 13px;font-family:inherit;font-size:13px;outline:none;"/>
+              </div>
+              <div>
+                <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;" data-i18n="pass-confirm">Растау</label>
+                <input type="password" id="confirmPassword" placeholder="Қайталаңыз"
+                  style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:11px;color:#fff;padding:11px 13px;font-family:inherit;font-size:13px;outline:none;"/>
+              </div>
+            </div>
+            <button onclick="changePassword()" data-i18n="pass-btn"
+              style="margin-top:12px;padding:10px 20px;border:none;border-radius:11px;background:rgba(166,15,45,.5);color:#fff;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer;">
+              🔐 Парольді өзгерту
+            </button>
+          </div>
+        </section>
+ 
+        <!-- CONSULTATIONS + DEADLINES -->
+        <section class="profile-double-grid">
+ 
+          <!-- Consultations -->
+          <div class="dashboard-panel glass" id="consultations">
+            <div class="dashboard-panel-head">
+              <h3 data-i18n="pro-consult-title">Консультациялар</h3>
+            </div>
+ 
+            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:20px;margin-bottom:16px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                <h4 style="font-size:14px;font-weight:800;" data-i18n="consult-request">📅 Консультация сұрату</h4>
+                <div style="background:linear-gradient(135deg,rgba(166,15,45,.3),rgba(255,200,0,.15));border:1px solid rgba(255,200,0,.3);border-radius:10px;padding:6px 14px;font-size:13px;font-weight:800;color:#ffd6de;" data-i18n="consult-price">
+                  💳 5 000 ₸ / сессия
+                </div>
+              </div>
+ 
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+                <div>
+                  <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;" data-i18n="consult-topic">Тақырып</label>
+                  <select id="cReqTopic" style="width:100%;background:#2a0d1a;border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;padding:10px 12px;font-family:inherit;font-size:13px;outline:none;">
+                    <option style="background:#2a0d1a;color:#fff;" data-i18n="topic-uni">Университет таңдау</option>
+                    <option style="background:#2a0d1a;color:#fff;" data-i18n="topic-grant">Грант стратегиясы</option>
+                    <option style="background:#2a0d1a;color:#fff;" data-i18n="topic-docs">Құжат тексеру</option>
+                    <option style="background:#2a0d1a;color:#fff;" data-i18n="topic-interview">Сұхбатқа дайындық</option>
+                    <option style="background:#2a0d1a;color:#fff;" data-i18n="topic-motivation">Мотивациялық хат</option>
+                    <option style="background:#2a0d1a;color:#fff;" data-i18n="topic-visa">Виза мәселесі</option>
+                    <option style="background:#2a0d1a;color:#fff;" data-i18n="topic-other">Басқа сұрақ</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;" data-i18n="consult-date">Ыңғайлы күн</label>
+                  <input type="date" id="cReqDate"
+                    style="width:100%;background:#2a0d1a;border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;padding:10px 12px;font-family:inherit;font-size:13px;outline:none;"/>
+                </div>
+              </div>
+ 
+              <div style="margin-bottom:14px;">
+                <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px;" data-i18n="consult-question">Сұрағыңды жаз</label>
+                <textarea id="cReqQuestion"
+                  style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;padding:10px 12px;font-family:inherit;font-size:13px;min-height:72px;resize:vertical;outline:none;"></textarea>
+              </div>
+ 
+              <button onclick="openPaymentModal()" data-i18n="consult-pay-btn"
+                style="padding:11px 22px;border:none;border-radius:12px;background:linear-gradient(135deg,#a60f2d,#701930);color:#fff;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(166,15,45,.4);">
+                💳 Төлеп консультация сұрату — 5 000 ₸
+              </button>
+            </div>
+ 
+            <!-- Payment Modal -->
+            <div id="paymentModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+              <div style="width:min(480px,100%);background:#1c0b13;border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:28px;">
+                <h3 style="font-size:18px;font-weight:800;margin-bottom:6px;" data-i18n="pay-title">💳 Консультацияға төлем</h3>
+                <p style="font-size:13px;color:var(--muted);margin-bottom:20px;" data-i18n="pay-desc">Stripe арқылы қауіпсіз төлем. Төлем өткеннен кейін өтінімің менторға жіберіледі.</p>
+ 
+                <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px;margin-bottom:18px;">
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;">
+                    <span style="color:var(--muted);" data-i18n="pay-session">Консультация сессиясы</span><strong>5 000 ₸</strong>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:10px;">
+                    <span style="color:var(--muted);" data-i18n="pay-fee">Комиссия</span><strong>0 ₸</strong>
+                  </div>
+                  <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:10px;display:flex;justify-content:space-between;font-size:15px;font-weight:800;">
+                    <span data-i18n="pay-total">Жалпы</span><span style="color:#ffd6de;">5 000 ₸</span>
+                  </div>
+                </div>
+                <div style="display:grid;gap:10px;margin-bottom:18px;">
+                  <div>
+                    <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:6px;">Карта нөмірі</label>
+                    <input id="cardNumber" maxlength="19" placeholder="4242 4242 4242 4242"
+                      style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:11px;color:#fff;padding:13px 14px;font-family:inherit;">
+                  </div>
+                
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                    <div>
+                      <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:6px;">Жарамдылық мерзімі</label>
+                      <input id="cardExpiry" maxlength="5" placeholder="12/28"
+                        style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:11px;color:#fff;padding:13px 14px;font-family:inherit;">
+                    </div>
+                
+                    <div>
+                      <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:6px;">CVV</label>
+                      <input id="cardCvv" maxlength="3" placeholder="123" type="password"
+                        style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:11px;color:#fff;padding:13px 14px;font-family:inherit;">
+                    </div>
+                  </div>
+                
+                  <div>
+                    <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:6px;">Карта иесінің аты-жөні</label>
+                    <input id="cardHolder" placeholder="ULDANA ZHUSUPBEKOVA"
+                      style="width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:11px;color:#fff;padding:13px 14px;font-family:inherit;">
+                  </div>
+                
+                  <small style="color:rgba(255,255,255,.45);font-size:11px;">Demo карта: 4242 4242 4242 4242 · 12/28 · 123</small>
+                </div>
+ 
+                <div id="payError" style="color:#f87171;font-size:12px;margin-bottom:12px;display:none;"></div>
+                <div style="display:flex;gap:10px;">
+                  <button onclick="processPayment()" id="payBtn" data-i18n="pay-btn"
+                    style="flex:1;padding:12px;border:none;border-radius:12px;background:linear-gradient(135deg,#059669,#047857);color:#fff;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;">
+                    ✅ 5 000 ₸ Төлеу
+                  </button>
+                  <button onclick="closePaymentModal()"
+                    style="padding:12px 18px;border:none;border-radius:12px;background:rgba(255,255,255,.1);color:var(--text);font-family:inherit;font-size:13px;cursor:pointer;">
+                    <span data-i18n="pro-payment-cancel">Болдырмау</span>
+                  </button>
+                </div>
+                <p style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px;" data-i18n="pay-secure">🔒 Stripe арқылы қорғалған төлем</p>
+              </div>
+            </div>
+ 
+            <div class="dashboard-stack" id="consultationList" style="margin-top:0;"></div>
+          </div>
+ 
+          <!-- Deadlines -->
+          <div class="dashboard-panel glass" id="deadlines">
+            <div class="dashboard-panel-head">
+              <h3 data-i18n="pro-deadlines-title">Дедлайндар</h3>
+              <button class="profile-mini-btn danger" onclick="clearProfileDeadlines()" data-i18n="pro-clear-btn">Тазалау</button>
+            </div>
+            <div class="profile-form-grid">
+              <div class="profile-field">
+                <label data-i18n="deadline-title">Атауы</label>
+                <input id="profileDeadlineTitle" placeholder="Sabancı application" />
+              </div>
+              <div class="profile-field">
+                <label data-i18n="deadline-date">Күні</label>
+                <input id="profileDeadlineDate" type="date" />
+              </div>
+              <div class="profile-field full">
+                <label data-i18n="deadline-note">Ескерту</label>
+                <input id="profileDeadlineNote" placeholder="Қандай құжат керек?" />
+              </div>
+            </div>
+            <div class="profile-actions">
+              <button class="profile-mini-btn primary" onclick="addProfileDeadline()" data-i18n="pro-deadline-add">Дедлайн қосу</button>
+            </div>
+            <div class="dashboard-stack" id="profileDeadlinesList" style="margin-top:18px;"></div>
+          </div>
+        </section>
+ 
+        <!-- APPLICATION PROGRESS -->
+        <section class="dashboard-panel glass">
+          <div class="dashboard-panel-head">
+            <h3 data-i18n="pro-app-progress">Өтінім прогресі</h3>
+            <span class="progress-total" id="progressTotalText">0%</span>
+          </div>
+          <div class="progress-list">
+            <div class="progress-line-block">
+              <div class="progress-line-top">
+                <span data-i18n="progress-profile">Профиль толтыру</span>
+                <strong id="profileCompletionText">0%</strong>
+              </div>
+              <div class="progress-bar-line"><div id="profileCompletionBar" style="width:0%"></div></div>
+            </div>
+            <div class="progress-line-block">
+              <div class="progress-line-top">
+                <span data-i18n="progress-docs">Құжаттар дайын</span>
+                <strong id="docsCompletionText">0%</strong>
+              </div>
+              <div class="progress-bar-line"><div id="docsCompletionBar" style="width:0%"></div></div>
+            </div>
+            <div class="progress-line-block">
+              <div class="progress-line-top">
+                <span data-i18n="progress-uni">Университет таңдау</span>
+                <strong id="uniCompletionText">0%</strong>
+              </div>
+              <div class="progress-bar-line"><div id="uniCompletionBar" style="width:0%"></div></div>
+            </div>
+            <div class="progress-line-block">
+              <div class="progress-line-top">
+                <span data-i18n="progress-deadline">Дедлайн бақылау</span>
+                <strong id="deadlineCompletionText">0%</strong>
+              </div>
+              <div class="progress-bar-line"><div id="deadlineCompletionBar" style="width:0%"></div></div>
+            </div>
+            <div class="progress-line-block">
+              <div class="progress-line-top">
+                <span data-i18n="progress-tasks">Тапсырмалар орындалуы</span>
+                <strong id="taskCompletionText">0%</strong>
+              </div>
+              <div class="progress-bar-line"><div id="taskCompletionBar" style="width:0%"></div></div>
+            </div>
+          </div>
+        </section>
+ 
+        <!-- DOCUMENTS + NOTES -->
+        <section class="profile-double-grid">
+ 
+          <!-- Documents -->
+          <div class="dashboard-panel glass" id="documents">
+            <div class="dashboard-panel-head">
+              <h3 data-i18n="pro-docs-title">Құжаттар</h3>
+              <button class="profile-mini-btn danger" onclick="resetProfileDocuments()" data-i18n="reset">Қалпына келтіру</button>
+            </div>
+            <div id="profileDocumentsList"></div>
+          </div>
+ 
+          <!-- Notes -->
+          <div class="dashboard-panel glass" id="notes">
+            <div class="dashboard-panel-head">
+              <h3 data-i18n="pro-notes-title">Жеке жазбалар</h3>
+              <button class="profile-mini-btn danger" onclick="clearProfileNotes()" data-i18n="pro-clear-btn">Тазалау</button>
+            </div>
+            <div class="profile-form-grid">
+              <div class="profile-field">
+                <label data-i18n="note-title">Тақырып</label>
+                <input id="profileNoteTitle" placeholder="Motivation idea" />
+              </div>
+              <div class="profile-field">
+                <label data-i18n="note-category">Категория</label>
+                <select id="profileNoteCategory">
+                  <option data-i18n="cat-doc">Құжат</option>
+                  <option data-i18n="cat-uni">Университет</option>
+                  <option data-i18n="cat-grant">Грант</option>
+                  <option data-i18n="prep-interview">Сұхбат</option>
+                </select>
+              </div>
+              <div class="profile-field full">
+                <label data-i18n="note-text">Мәтін</label>
+                <textarea id="profileNoteText" placeholder="Жазба..."></textarea>
+              </div>
+            </div>
+            <div class="profile-actions">
+              <button class="profile-mini-btn primary" onclick="addProfileNote()" data-i18n="note-save">Жазба сақтау</button>
+            </div>
+            <div class="dashboard-stack" id="profileNotesList" style="margin-top:18px;"></div>
+          </div>
+        </section>
+ 
+        <!-- UNIVERSITIES -->
+        <section class="dashboard-panel glass" id="universities">
+          <div class="dashboard-panel-head">
+            <h3 data-i18n="pro-unis-title">Таңдаулы университеттер</h3>
+            <a href="universities.html" class="panel-link" data-i18n="add-more">Тағы қосу</a>
+          </div>
+          <div class="profile-form-grid">
+            <div class="profile-field">
+              <label data-i18n="uni-label">Университет</label>
+              <input id="uniNameInput" placeholder="Sabancı University" />
+            </div>
+            <div class="profile-field">
+              <label data-i18n="pro-field-city">Қала</label>
+              <input id="uniCityInput" placeholder="Istanbul" />
+            </div>
+            <div class="profile-field full">
+              <label data-i18n="uni-note">Ескерту</label>
+              <input id="uniNoteInput" placeholder="Engineering мықты, English program бар..." />
+            </div>
+          </div>
+          <div class="profile-actions">
+            <button class="profile-mini-btn primary" onclick="addProfileUniversity()" data-i18n="uni-add">Университет қосу</button>
+          </div>
+          <div class="saved-university-grid" id="savedUniversitiesContainer" style="margin-top:20px;"></div>
+        </section>
+ 
+        <!-- TASKS -->
+        <section class="dashboard-panel glass" id="tasks">
+          <div class="dashboard-panel-head">
+            <h3 data-i18n="tasks-title">✅ Тапсырмалар (Next Steps)</h3>
+            <span class="badge success" id="tasksDoneCount">0</span>
+          </div>
+          <div class="profile-form-grid">
+            <div class="profile-field">
+              <label data-i18n="task-label">Тапсырма</label>
+              <input id="taskTitleInput" placeholder="Мысалы: IELTS тапсыру" />
+            </div>
+            <div class="profile-field">
+              <label data-i18n="task-date">Мерзімі</label>
+              <input id="taskDueDateInput" type="date" />
+            </div>
+            <div class="profile-field full">
+              <label data-i18n="task-priority">Маңыздылық</label>
+              <select id="taskPriorityInput">
+                <option value="high"   data-i18n="priority-high">🔴 Жоғары</option>
+                <option value="normal" data-i18n="priority-normal" selected>🟡 Орта</option>
+                <option value="low"    data-i18n="priority-low">🟢 Төмен</option>
+              </select>
+            </div>
+          </div>
+          <div class="profile-actions">
+            <button class="profile-mini-btn primary" onclick="addTaskFromForm()" data-i18n="task-add">Тапсырма қосу</button>
+          </div>
+          <div id="tasksListContainer" style="margin-top:18px;"></div>
+        </section>
+ 
+        <!-- NOTIFICATIONS -->
+        <section class="dashboard-panel glass" id="notifications">
+          <div class="dashboard-panel-head">
+            <h3><span data-i18n="notif-title">🔔 Ескертулер</span> <span id="notifBadge" style="background:#ef4444;color:white;border-radius:50%;padding:2px 7px;font-size:12px;display:none;"></span></h3>
+            <button class="profile-mini-btn secondary" onclick="checkDeadlineNotifications(); renderNotificationsPanel();">
+              <span data-i18n="admin-refresh-btn">Жаңарту</span>
+            </button>
+          </div>
+          <div id="notificationsList"></div>
+        </section>
+ 
+        <!-- QUICK ACTIONS -->
+        <section class="dashboard-panel glass">
+          <div class="dashboard-panel-head">
+            <h3 data-i18n="pro-quick-actions">Жылдам әрекеттер</h3>
+          </div>
+          <div class="quick-action-grid">
+            <a href="universities.html" class="quick-action-box">
+              <span>🏛️</span><strong data-i18n="qa-unis">Университеттер</strong>
+            </a>
+            <a href="preparation.html" class="quick-action-box">
+              <span>📂</span><strong data-i18n="qa-prep">Дайындық</strong>
+            </a>
+            <a href="recommendation.html" class="quick-action-box">
+              <span>🧠</span><strong data-i18n="qa-career">Career Test</strong>
+            </a>
+            <a href="feed.html" class="quick-action-box">
+              <span>📰</span><strong data-i18n="qa-feed">Лента</strong>
+            </a>
+          </div>
+        </section>
+ 
+      </section>
+    </div>
+  </main>
+ 
+  <div class="profile-toast" id="profileToast">Сақталды</div>
+ 
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="logo footer-logo">EduBridge <span>Türkiye</span></div>
+        <p data-i18n="footer-text">© 2026 EduBridge Türkiye. Барлық құқықтар қорғалған.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Email</a>
+        <a href="#" data-i18n="footer-contact">Байланыс</a>
+      </div>
+    </div>
+  </footer>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/script.js"></script>
+ 
+  <!-- AI Bubble -->
+  <div id="aiBubble" style="position:fixed;bottom:24px;right:24px;z-index:9998;display:flex;flex-direction:column;align-items:flex-end;gap:12px;">
+    <div id="aiChatWindow" style="display:none;width:340px;height:460px;background:#1c0b13;border:1px solid rgba(255,255,255,.15);border-radius:22px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6);flex-direction:column;animation:slideUp .25s ease;">
+      <div style="background:linear-gradient(135deg,#a60f2d,#701930);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:32px;height:32px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;">🤖</div>
+          <div>
+            <div style="font-size:13px;font-weight:800;color:#fff;">EduBridge AI</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.7);" data-i18n="ai-online">Онлайн · Жауап береді</div>
+          </div>
+        </div>
+        <button onclick="toggleAIBubble()" style="border:none;background:rgba(255,255,255,.15);color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;">✕</button>
+      </div>
+      <div id="aiBubbleMessages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;height:340px;scrollbar-width:thin;">
+        <div style="display:flex;gap:8px;align-items:flex-start;">
+          <div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div>
+          <div style="background:rgba(255,255,255,.08);border-radius:14px;border-top-left-radius:4px;padding:10px 13px;font-size:13px;color:#f3dfe4;line-height:1.5;max-width:240px;" data-i18n="ai-hello">
+            Сәлем! Мен EduBridge AI кеңесшісімін. Түркия университеттері туралы кез-келген сұрақты қой 👋
+          </div>
+        </div>
+      </div>
+      <div style="padding:10px 14px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;">
+        <input id="aiBubbleInput" type="text" data-i18n-placeholder="ai-placeholder"
+          style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;padding:9px 12px;font-family:inherit;font-size:13px;outline:none;"
+          onkeydown="if(event.key==='Enter')sendAIBubble()"/>
+        <button onclick="sendAIBubble()" style="width:36px;height:36px;background:linear-gradient(135deg,#a60f2d,#701930);border:none;border-radius:10px;color:#fff;font-size:16px;cursor:pointer;">➤</button>
+      </div>
+    </div>
+    <button onclick="toggleAIBubble()" id="aiBubbleBtn" data-i18n-title="ai-title"
+      style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#a60f2d,#701930);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(166,15,45,.5);font-size:24px;display:flex;align-items:center;justify-content:center;animation:pulseBubble 2.5s ease-in-out infinite;position:relative;"
+      title="AI Кеңесші">
+      🤖
+      <span id="aiBubbleDot" style="position:absolute;top:2px;right:2px;width:12px;height:12px;background:#22c55e;border-radius:50%;border:2px solid #1c0b13;"></span>
+    </button>
+  </div>
+ 
+  <style>
+    @keyframes pulseBubble{0%,100%{transform:translateY(0);box-shadow:0 4px 20px rgba(166,15,45,.5);}50%{transform:translateY(-4px);box-shadow:0 8px 28px rgba(166,15,45,.7);}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+    #aiBubbleMessages::-webkit-scrollbar{width:3px;}
+    #aiBubbleMessages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
+    .ai-msg-user{display:flex;flex-direction:row-reverse;gap:8px;align-items:flex-start;}
+    .ai-msg-user .ai-bubble{background:linear-gradient(135deg,#a60f2d,#701930);border-radius:14px;border-top-right-radius:4px;padding:10px 13px;font-size:13px;color:#fff;line-height:1.5;max-width:240px;}
+    .ai-msg-bot{display:flex;gap:8px;align-items:flex-start;}
+    .ai-msg-bot .ai-bubble{background:rgba(255,255,255,.08);border-radius:14px;border-top-left-radius:4px;padding:10px 13px;font-size:13px;color:#f3dfe4;line-height:1.5;max-width:240px;}
+  </style>
+ 
+  <script>
+  var _aiIsLoading = false;
+  var _aiBubbleOpen = false;
+ 
+  function toggleAIBubble() {
+    _aiBubbleOpen = !_aiBubbleOpen;
+    var w = document.getElementById("aiChatWindow");
+    if (!w) return;
+    if (_aiBubbleOpen) {
+      w.style.display = "flex"; w.style.flexDirection = "column";
+      var inp = document.getElementById("aiBubbleInput");
+      if (inp) setTimeout(function(){ inp.focus(); }, 100);
+    } else { w.style.display = "none"; }
+  }
+  window.toggleAIBubble = toggleAIBubble;
+ 
+  window.sendAIBubble = async function() {
+    var input = document.getElementById("aiBubbleInput");
+    var text = (input?.value || "").trim();
+    if (!text || _aiIsLoading) return;
+    input.value = "";
+    var msgs = document.getElementById("aiBubbleMessages");
+    var um = document.createElement("div"); um.className = "ai-msg-user";
+    um.innerHTML = '<div class="ai-bubble">' + text.replace(/</g,"&lt;") + "</div>";
+    msgs.appendChild(um);
+    var typing = document.createElement("div"); typing.className = "ai-msg-bot"; typing.id = "aiTyping";
+    typing.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div><div class="ai-bubble"><span style="opacity:.6">●●●</span></div>';
+    msgs.appendChild(typing); msgs.scrollTop = msgs.scrollHeight;
+    _aiIsLoading = true;
+    var systemPrompt = (window.CONFIG && window.CONFIG.AI_SYSTEM) || "Сен EduBridge Türkiye платформасының AI кеңесшісісің. Түркия университеттері, грант, мамандық туралы сұрақтарға қысқа, нақты жауап бер. Қазақ тілінде жауап бер.";
+    try {
+      var reply = "";
+      var groqKey = (window.CONFIG && window.CONFIG.GROQ_KEY) || localStorage.getItem("groq_key") || "";
+      var geminiKey = (window.CONFIG && window.CONFIG.GEMINI_KEY) || localStorage.getItem("gemini_key") || "";
+      var anthropicKey = (window.CONFIG && window.CONFIG.ANTHROPIC_KEY) || localStorage.getItem("anthropic_key") || "";
+      if (groqKey) {
+        var groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+groqKey},body:JSON.stringify({model:"llama-3.3-70b-versatile",messages:[{role:"system",content:systemPrompt},{role:"user",content:text}],max_tokens:400,temperature:0.7})});
+        var groqData = await groqRes.json();
+        if (groqData.error) throw new Error(groqData.error.message);
+        reply = groqData.choices?.[0]?.message?.content || "Жауап алынбады.";
+      } else if (geminiKey) {
+        var geminiRes = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key="+geminiKey,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:systemPrompt+"\n\nСұрақ: "+text}]}],generationConfig:{maxOutputTokens:400,temperature:0.7}})});
+        var geminiData = await geminiRes.json();
+        if (geminiData.error) throw new Error(geminiData.error.message);
+        reply = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Жауап алынбады.";
+      } else if (anthropicKey) {
+        var anthRes = await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","anthropic-version":"2023-06-01","x-api-key":anthropicKey,"anthropic-dangerous-allow-browser":"true"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:400,system:systemPrompt,messages:[{role:"user",content:text}]})});
+        var anthData = await anthRes.json();
+        if (anthData.error) throw new Error(anthData.error.message);
+        reply = anthData.content?.map(function(b){return b.text||"";}).join("") || "Жауап алынбады.";
+      } else { reply = "⚙️ API key жоқ! js/config.js файлында GROQ_KEY қойылған — бірақ CONFIG жүктелмеген болуы мүмкін."; }
+      document.getElementById("aiTyping")?.remove();
+      var bm = document.createElement("div"); bm.className = "ai-msg-bot";
+      bm.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div><div class="ai-bubble">'+reply.replace(/\n/g,"<br>").replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>")+"</div>";
+      msgs.appendChild(bm);
+    } catch(e) {
+      document.getElementById("aiTyping")?.remove();
+      var em = document.createElement("div"); em.className = "ai-msg-bot";
+      em.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div><div class="ai-bubble" style="color:#f87171;">❌ Қате: '+e.message+'<br><small>API key дұрыс па?</small></div>';
+      msgs.appendChild(em);
+    }
+    _aiIsLoading = false; msgs.scrollTop = msgs.scrollHeight;
+  };
+  </script>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/backend-client.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+  var STRIPE_PK = window.CONFIG && window.CONFIG.STRIPE_PK ? window.CONFIG.STRIPE_PK : '';
+  window._stripe = null; window._stripeCard = null;
+  window.initStripe = function() {
+    if (window._stripe) return;
+    window._stripe = Stripe(STRIPE_PK);
+    var elements = window._stripe.elements({appearance:{theme:'night',variables:{colorPrimary:'#b3123c',colorText:'#ffffff',fontFamily:'Manrope,sans-serif',borderRadius:'11px'}}});
+    window._stripeCard = elements.create('card',{style:{base:{color:'#fff',fontSize:'14px','::placeholder':{color:'rgba(255,255,255,0.4)'}},invalid:{color:'#f87171'}}});
+    window._stripeCard.mount('#stripeCardElement');
+    window._stripeCard.on('change',function(e){var el=document.getElementById('stripeCardError');if(el){el.textContent=e.error?e.error.message:'';el.style.display=e.error?'block':'none';}});
+  };
+
+  window.openPaymentModal = function() {
+  const topic = document.getElementById("cReqTopic").value;
+  const date = document.getElementById("cReqDate").value;
+  const question = document.getElementById("cReqQuestion").value.trim();
+
+  if (!date || !question) {
+    alert("Күн мен сұрақты толтырыңыз");
+    return;
+  }
+
+  document.getElementById("paymentModal").style.display = "flex";
+};
+
+
+window.processPayment = async function () {
+  const topic = document.getElementById("cReqTopic").value;
+  const date = document.getElementById("cReqDate").value;
+  const question = document.getElementById("cReqQuestion").value.trim();
+  const email = localStorage.getItem("currentUserEmail") || "guest@example.com";
+
+  if (!date || !question) {
+    alert("Күн мен сұрақты толтырыңыз");
+    return;
+  }
+
+  const res = await fetch("http://localhost:3000/api/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ topic, date, question, email }),
+  });
+
+  const data = await res.json();
+
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    alert("Stripe төлем беті ашылмады: " + (data.error || "unknown error"));
+  }
+};
+
+
+  window.closePaymentModal = function() {
+    var modal = document.getElementById('paymentModal');
+    if (modal) modal.style.display = 'none';
+    var err = document.getElementById('payError');
+    if (err) { err.style.display = 'none'; err.textContent = ''; }
+  };
+  </script>
+
+<script>
+  function getProfileKey() {
+    const email =
+      localStorage.getItem("currentUserEmail") ||
+      localStorage.getItem("email") ||
+      "guest@example.com";
+  
+    return "profile_" + email;
+  }
+  
+  function saveProfileInfo() {
+    const profile = {
+      name: document.getElementById("profileNameInput")?.value || "",
+      email: document.getElementById("profileEmailInput")?.value || "",
+      city: document.getElementById("profileCityInput")?.value || "",
+      major: document.getElementById("profileMajorInput")?.value || "",
+      goal: document.getElementById("profileGoalInput")?.value || "",
+      phone: document.getElementById("profilePhone")?.value || "",
+      country: document.getElementById("profileCountry")?.value || "",
+      english: document.getElementById("profileEnglish")?.value || "",
+      budget: document.getElementById("profileBudget")?.value || ""
+    };
+  
+    localStorage.setItem(getProfileKey(), JSON.stringify(profile));
+  
+    if (profile.email) {
+      localStorage.setItem("currentUserEmail", profile.email);
+      localStorage.setItem("email", profile.email);
+    }
+  
+    fillProfileData();
+    alert("✅ Профиль сақталды!");
+  }
+  
+  function fillProfileData() {
+    const saved = JSON.parse(localStorage.getItem(getProfileKey()) || "{}");
+  
+    const email =
+      saved.email ||
+      localStorage.getItem("currentUserEmail") ||
+      localStorage.getItem("email") ||
+      "email@example.com";
+  
+    document.getElementById("profileNameInput").value = saved.name || "";
+    document.getElementById("profileEmailInput").value = email;
+    document.getElementById("profileCityInput").value = saved.city || "";
+    document.getElementById("profileMajorInput").value = saved.major || "Computer Science";
+    document.getElementById("profileGoalInput").value = saved.goal || "";
+    document.getElementById("profilePhone").value = saved.phone || "";
+    document.getElementById("profileCountry").value = saved.country || "";
+    document.getElementById("profileEnglish").value = saved.english || "";
+    document.getElementById("profileBudget").value = saved.budget || "";
+  
+    document.getElementById("profileEmail").textContent = email;
+    document.getElementById("profileName").textContent = saved.name || "Студент";
+    document.getElementById("profileWelcomeName").textContent = saved.name || "студент";
+    document.getElementById("profileAvatar").textContent = (saved.name || "S").charAt(0).toUpperCase();
+  }
+  
+  document.addEventListener("DOMContentLoaded", fillProfileData);
+  </script>
+
+  
+ 
+  <script src="js/i18n-core.js"></script>
+  <script src="js/i18n-profile.js"></script>
+  <script src="js/profile-backend.js"></script>
+ 
+</body>
+</html>

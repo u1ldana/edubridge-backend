@@ -1,0 +1,1 @@
+Mentor page freeze fix: removed heavy duplicate global scripts from mentor.html; disabled mentor-profile-students auto reload; kept folder structure unchanged.

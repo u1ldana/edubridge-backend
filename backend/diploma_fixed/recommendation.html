@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="EduBridge Türkiye — Мамандық ұсынысы тесті">
+    <meta name="description" content="EduBridge Türkiye — Мамандық ұсынысы тесті">
+  <meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>16 Тұлға тесті | EduBridge Türkiye</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css"/>
+<style>
+.test-wrap{padding:70px 0 90px;}
+/* Hero */
+.test-hero{text-align:center;margin-bottom:40px;}
+.test-hero h1{font-size:clamp(28px,5vw,52px);font-weight:900;letter-spacing:-.04em;margin:12px 0 10px;}
+.test-hero p{color:var(--muted);max-width:600px;margin:0 auto;font-size:15px;line-height:1.7;}
+.t-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.t-badge{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(255,255,255,.08);color:var(--muted);}
+/* Progress */
+.prog-wrap{margin-bottom:28px;}
+.prog-bar{height:8px;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#a60f2d,#d4365c);border-radius:6px;transition:width .3s;}
+.prog-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:6px;}
+/* Question */
+.q-block{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:28px;margin-bottom:12px;transition:border-color .2s;}
+.q-block.answered{border-color:rgba(166,15,45,.35);}
+.q-block.unanswered{border-color:#ef4444;background:rgba(239,68,68,.05);}
+.q-num{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.q-text{font-size:16px;font-weight:700;line-height:1.5;margin-bottom:22px;}
+.q-scale{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;}
+.q-pole{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;}
+.q-pole.r{text-align:right;}
+.q-btns{display:flex;gap:6px;justify-content:center;}
+.q-btn{
+  width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.15);
+  background:transparent;color:var(--text);font-family:inherit;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .15s;flex-shrink:0;
+}
+.q-btn:hover{border-color:#a60f2d;background:rgba(166,15,45,.2);color:#fff;}
+.q-btn.sel{background:#a60f2d;border-color:#a60f2d;color:#fff;transform:scale(1.12);}
+/* Block divider */
+.blk-hdr{display:flex;align-items:center;gap:12px;margin:36px 0 16px;}
+.blk-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.blk-title{font-size:18px;font-weight:800;}
+.blk-sub{font-size:13px;color:var(--muted);}
+/* Submit */
+.sub-section{text-align:center;margin-top:36px;padding:28px;background:rgba(255,255,255,.04);border-radius:20px;}
+.sub-btn{padding:16px 52px;background:linear-gradient(135deg,#a60f2d,#701930);color:#fff;border:none;border-radius:16px;font-family:inherit;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(166,15,45,.4);transition:all .2s;}
+.sub-btn:hover{transform:translateY(-2px);}
+.sub-hint{font-size:13px;color:var(--muted);margin-top:10px;}
+/* ─── RESULT ─── */
+.res-wrap{display:none;margin-top:52px;}
+/* Type banner */
+.type-banner{border-radius:28px;padding:52px 32px;text-align:center;position:relative;overflow:hidden;margin-bottom:32px;}
+.type-banner::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.18);}
+.type-banner *{position:relative;}
+.type-code{font-size:76px;font-weight:900;letter-spacing:.12em;color:#fff;display:block;line-height:1;}
+.type-variant{font-size:15px;color:rgba(255,255,255,.8);font-weight:700;margin:6px 0 4px;letter-spacing:.06em;}
+.type-name{font-size:28px;font-weight:800;color:#fff;}
+.type-role{display:inline-block;padding:6px 18px;border-radius:20px;background:rgba(255,255,255,.2);font-size:13px;font-weight:700;color:#fff;margin-top:10px;}
+.type-slogan{font-size:15px;color:rgba(255,255,255,.75);font-style:italic;margin-top:8px;}
+/* 5 axes */
+.axes-wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:28px;}
+.ax-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px;text-align:center;}
+.ax-letter{font-size:26px;font-weight:900;color:#ffd6de;}
+.ax-label{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.3;}
+.ax-pct{font-size:13px;font-weight:800;color:#fff;margin-top:5px;}
+.ax-bar{height:5px;background:rgba(255,255,255,.1);border-radius:3px;margin-top:7px;overflow:hidden;}
+.ax-fill{height:100%;border-radius:3px;transition:width .7s;}
+/* Result grid */
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;}
+.res-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:20px;}
+.res-card h3{font-size:15px;font-weight:800;margin-bottom:12px;}
+.match-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07);}
+.match-row:last-child{border:none;}
+.match-row .val{font-weight:800;color:#ffd6de;font-size:13px;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{padding:6px 13px;border-radius:20px;font-size:12px;font-weight:600;background:rgba(255,255,255,.08);color:var(--text);}
+.tag.hi{background:rgba(166,15,45,.25);color:#ffd6de;font-weight:700;}
+.famous-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;}
+.fam-card{background:rgba(255,255,255,.05);border-radius:10px;padding:10px;text-align:center;}
+.fam-name{font-size:12px;font-weight:700;}
+.fam-role{font-size:10px;color:var(--muted);margin-top:2px;}
+.sw-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.sw-box h4{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.06em;}
+/* Actions */
+.res-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px;}
+.r-btn{padding:12px 26px;border-radius:13px;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer;border:none;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+.r-btn.pri{background:linear-gradient(135deg,#a60f2d,#701930);color:#fff;box-shadow:0 4px 14px rgba(166,15,45,.35);}
+.r-btn.sec{background:rgba(255,255,255,.1);color:var(--text);}
+.r-btn:hover{transform:translateY(-1px);}
+/* Warn */
+.warn{background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.25);border-radius:12px;padding:14px;font-size:12px;color:#fbbf24;margin-bottom:20px;line-height:1.6;}
+@media(max-width:680px){.axes-wrap{grid-template-columns:repeat(3,1fr)}.res-grid{grid-template-columns:1fr}.q-scale{grid-template-columns:1fr}.q-pole,.q-pole.r{text-align:center;white-space:normal}.famous-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body data-page="recommendation">
+<div class="bg-blur bg-blur-1"></div><div class="bg-blur bg-blur-2"></div>
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">EduBridge <span>Türkiye</span></a>
+    <nav class="nav">
+      <a href="index.html" data-i18n="nav-home">Басты бет</a>
+      <a href="specialties.html" data-i18n="nav-specialties">Мамандықтар</a>
+      <a href="universities.html" data-i18n="nav-universities">Университеттер</a>
+      <a href="preparation.html" data-i18n="nav-preparation">Дайындық</a>
+      <a href="feed.html" data-i18n="nav-feed">Лента</a>
+    </nav>
+    <div class="header-actions">
+      <div class="language-dropdown">
+        <button type="button" class="language-btn" onclick="toggleLanguageMenu()">
+          <span data-i18n="nav-language">Тіл</span><span class="arrow">▾</span>
+          
+        </button>
+        <div class="language-menu" id="languageMenu">
+          <a href="#" onclick="setLang('kz');return false;">🇰🇿 Қазақша</a>
+          <a href="#" onclick="setLang('ru');return false;">🇷🇺 Русский</a>
+          <a href="#" onclick="setLang('en');return false;">🇬🇧 English</a>
+          <a href="#" onclick="setLang('tr');return false;">🇹🇷 Türkçe</a>
+        </div>
+      </div>
+      <a href="profile.html" class="login-btn" id="headerLoginBtn"><span data-i18n="nav-profile">Профиль</span></a>
+    </div>
+  </div>
+</header>
+<main>
+<section class="test-wrap">
+<div class="container">
+<!-- HERO -->
+<div class="test-hero">
+  <span class="section-label">16 Personalities · NERIS Type Explorer</span>
+  <h1>Тұлға типі тесті</h1>
+  <p>Myers-Briggs + 5-ші ось (A/T) негізіндегі тест. 16personalities.com стандартымен жасалған. 60 сұрақ · ~10 минут</p>
+  <div class="t-badges">
+    <span class="t-badge">🧠 16 тұлға типі</span>
+    <span class="t-badge">5 ось · 60 сұрақ</span>
+    <span class="t-badge">🎓 Мамандық ұсынысы</span>
+    <span class="t-badge">🏛️ Түркия университеттері</span>
+  </div>
+</div>
+
+
+<!-- PROGRESS -->
+<div class="prog-wrap">
+  <div class="prog-bar"><div class="prog-fill" id="pFill" style="width:0%"></div></div>
+  <div class="prog-labels"><span id="pText">0 / 60 сұрақ</span><span id="pPct">0%</span></div>
+</div>
+<!-- QUESTIONS -->
+<div id="qArea"></div>
+<!-- SUBMIT -->
+<div class="sub-section">
+  <button class="sub-btn" onclick="calcMBTI()">Нәтижені есептеу →</button>
+  <div class="sub-hint" id="subHint">Барлық 60 сұраққа жауап беріңіз</div>
+</div>
+<!-- RESULT -->
+<div class="res-wrap" id="resWrap">
+  <div class="type-banner" id="typeBanner">
+    <span class="type-code" id="tCode">INTJ</span>
+    <div class="type-variant" id="tVariant">INTJ-A</div>
+    <div class="type-name" id="tName">Стратег</div>
+    <span class="type-role" id="tRole">Аналитик</span>
+    <div class="type-slogan" id="tSlogan">"Білім — ең үлкен күш"</div>
+  </div>
+  <div class="axes-wrap" id="axesWrap"></div>
+  <div class="warn">ℹ️ Бұл тест бағдарлама мақсатында қолданылады. MBTI — ғылыми диагноз емес, өзіңіздің қызығушылықтарыңызды да ескеріңіз.</div>
+  <div class="res-grid">
+    <div class="res-card"><h3>🎓 Ұсынылатын мамандықтар</h3><div id="rMajors"></div></div>
+    <div class="res-card"><h3>💼 Карьера бағыттары</h3><div class="tags" id="rCareers"></div></div>
+    <div class="res-card"><h3>🏛️ Ұсынылатын университеттер</h3><div id="rUnis"></div></div>
+    <div class="res-card"><h3>⭐ Осы типтің белгілі тұлғалары</h3><div class="famous-grid" id="rFamous"></div></div>
+  </div>
+  <div class="res-card" style="margin-bottom:20px;">
+    <h3>🔍 Сіздің тұлға типіңіз туралы</h3>
+    <p id="rDesc" style="font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px;"></p>
+    <div class="sw-grid">
+      <div class="sw-box"><h4>💪 КҮШТІ ЖАҚТАРЫ</h4><div class="tags" id="rStr"></div></div>
+      <div class="sw-box"><h4>🌱 ДАМЫТУЫ КЕРЕК</h4><div class="tags" id="rWeak"></div></div>
+    </div>
+  </div>
+  <div class="res-card" style="margin-bottom:28px;">
+    <h3>💘 Жұмыс стилі мен серіктестік</h3>
+    <p id="rWork" style="font-size:14px;color:var(--muted);line-height:1.8;"></p>
+  </div>
+  <div class="res-actions">
+    <button class="r-btn pri" onclick="saveToProfile()">💾 Профильге сақтау</button>
+    <a href="universities.html" class="r-btn sec">🏛️ Университеттер</a>
+    <a href="specialties.html" class="r-btn sec">🎓 Мамандықтар</a>
+    <button class="r-btn sec" onclick="retake()">🔄 Қайта тапсыру</button>
+  </div>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div><div class="logo footer-logo">EduBridge <span>Türkiye</span></div><p>© 2026 EduBridge Türkiye.</p></div>
+    <div class="footer-links"><a href="#">Instagram</a><a href="#">Email</a></div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/database.js"></script>
+<script src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/backend-client.js"></script>
+<script>
+// ════════════════════════════════════════════════════
+// 60 QUESTIONS — 5 axes × 12 questions each
+// Scale: 1=Strongly Agree Left, 7=Strongly Agree Right
+// ════════════════════════════════════════════════════
+const QS = [
+// ── E/I × 12 ──────────────────────────────────────
+{id:1,  ax:"EI", L:"Келісемін",R:"Келіспеймін", t:"Мен жиі жаңа адамдармен танысамын."},
+{id:2,  ax:"EI", L:"Келісемін",R:"Келіспеймін", t:"Топ жиналыстары мені шабыттандырады."},
+{id:3,  ax:"EI", L:"Келісемін",R:"Келіспеймін", t:"Мен жаңа орынға барғанда тез сөйлесіп кетемін."},
+{id:4,  ax:"EI", L:"Келісемін",R:"Келіспеймін", t:"Бейтаныс адамдарға өзімді таныстыру маған оңай."},
+{id:5,  ax:"EI", L:"Келісемін",R:"Келіспеймін", t:"Мен топта болғанда жалғыз болғанда алатын энергиядан гөрі көбірек энергия аламын."},
+{id:6,  ax:"EI", L:"Келісемін",R:"Келіспеймін", t:"Үлкен топтарда болу — маған қызықты, жалықтырмайды."},
+{id:7,  ax:"EI", L:"Келіспеймін",R:"Келісемін", t:"Ұзақ әлеуметтік кездесулерден кейін мен шаршаймын."},
+{id:8,  ax:"EI", L:"Келіспеймін",R:"Келісемін", t:"Маған жалғыз ойлану ыңғайлырақ."},
+{id:9,  ax:"EI", L:"Келіспеймін",R:"Келісемін", t:"Мен кішігірім топтағы терең сұхбатты ұнатамын."},
+{id:10, ax:"EI", L:"Келіспеймін",R:"Келісемін", t:"Жаңа адамдармен желілестіру мені тез шаршатады."},
+{id:11, ax:"EI", L:"Келіспеймін",R:"Келісемін", t:"Маған жазбаша сөйлесу ауызша сөйлесуден ыңғайлырақ."},
+{id:12, ax:"EI", L:"Келіспеймін",R:"Келісемін", t:"Телефонмен сөйлесуден гөрі хабарлама жіберуді жөн көремін."},
+// ── S/N × 12 ──────────────────────────────────────
+{id:13, ax:"SN", L:"Келісемін",R:"Келіспеймін", t:"Мен нақты деректер мен фактілерге сүйенемін."},
+{id:14, ax:"SN", L:"Келісемін",R:"Келіспеймін", t:"Мен практикалық тәжірибені теориялық болжамнан жоғары бағалаймын."},
+{id:15, ax:"SN", L:"Келісемін",R:"Келіспеймін", t:"Мен дәстүрлі тәсілдер жаңа тәсілдерге қарағанда тиімдірек деп санаймын."},
+{id:16, ax:"SN", L:"Келісемін",R:"Келіспеймін", t:"Маған нақты нұсқаулар жалпы бағыттан ыңғайлырақ."},
+{id:17, ax:"SN", L:"Келісемін",R:"Келіспеймін", t:"Мен қадамдарды бірте-бірте орындауды ұнатамын."},
+{id:18, ax:"SN", L:"Келісемін",R:"Келіспеймін", t:"Мен байқалатын, дәлелденген нәрселерге сенемін."},
+{id:19, ax:"SN", L:"Келіспеймін",R:"Келісемін", t:"Күрделі және ерекше идеялар мені қарапайым идеялардан гөрі қызықтырады."},
+{id:20, ax:"SN", L:"Келіспеймін",R:"Келісемін", t:"Мен болашақты қазіргіден гөрі қызықты деп санаймын."},
+{id:21, ax:"SN", L:"Келіспеймін",R:"Келісемін", t:"Мен жиі жаңа мүмкіндіктерді іздеймін."},
+{id:22, ax:"SN", L:"Келіспеймін",R:"Келісемін", t:"Мен суреттер мен метафоралар арқылы жақсы түсінемін."},
+{id:23, ax:"SN", L:"Келіспеймін",R:"Келісемін", t:"Маған жалпы бейне детальдарға қарағанда маңыздырақ."},
+{id:24, ax:"SN", L:"Келіспеймін",R:"Келісемін", t:"Мен жиі жаңа теориялар ойлап табамын."},
+// ── T/F × 12 ──────────────────────────────────────
+{id:25, ax:"TF", L:"Келісемін",R:"Келіспеймін", t:"Мен шешім қабылдауда эмоциядан гөрі логикаға сүйенемін."},
+{id:26, ax:"TF", L:"Келісемін",R:"Келіспеймін", t:"Объективті сын адамды ренжіткенше де пайдалы."},
+{id:27, ax:"TF", L:"Келісемін",R:"Келіспеймін", t:"Маған тиімділік үйлесімділіктен маңыздырақ."},
+{id:28, ax:"TF", L:"Келісемін",R:"Келіспеймін", t:"Мен дауда сезімдерді емес, фактілерді ұсынамын."},
+{id:29, ax:"TF", L:"Келісемін",R:"Келіспеймін", t:"Мен жұмыста адам факторынан гөрі нәтижеге бағытталамын."},
+{id:30, ax:"TF", L:"Келісемін",R:"Келіспеймін", t:"Мен сыни ойлауды ескі жолдан шықпаудан жоғары бағалаймын."},
+{id:31, ax:"TF", L:"Келіспеймін",R:"Келісемін", t:"Маған фактілік дәлелдерден гөрі эмоционалды үндеулер сендіреді."},
+{id:32, ax:"TF", L:"Келіспеймін",R:"Келісемін", t:"Мен адамдардың сезімін ренжітпеу үшін тікелей сын айтудан аулақпын."},
+{id:33, ax:"TF", L:"Келіспеймін",R:"Келісемін", t:"Маған адам үйлесімі нәтижеден маңыздырақ."},
+{id:34, ax:"TF", L:"Келіспеймін",R:"Келісемін", t:"Мен біреудің хабарламасын оқымас бұрын оның көңіл-күйін байқаймын."},
+{id:35, ax:"TF", L:"Келіспеймін",R:"Келісемін", t:"Мен шешім қабылдаған кезде этиканы тиімділіктен жоғары қоямын."},
+{id:36, ax:"TF", L:"Келіспеймін",R:"Келісемін", t:"Мен басқалардың проблемаларына шешім ұсынбас бұрын жай тыңдаймын."},
+// ── J/P × 12 ──────────────────────────────────────
+{id:37, ax:"JP", L:"Келісемін",R:"Келіспеймін", t:"Мен жоспарды ұстану ыңғайлы деп санаймын."},
+{id:38, ax:"JP", L:"Келісемін",R:"Келіспеймін", t:"Маған тәртіп пен жүйе маңызды."},
+{id:39, ax:"JP", L:"Келісемін",R:"Келіспеймін", t:"Мен тапсырманы дедлайнға дейін ерте аяқтауға тырысамын."},
+{id:40, ax:"JP", L:"Келісемін",R:"Келіспеймін", t:"Маған тазалық пен тәртіп маңызды."},
+{id:41, ax:"JP", L:"Келісемін",R:"Келіспеймін", t:"Мен жоспар жасамай жайсыздана бастаймын."},
+{id:42, ax:"JP", L:"Келісемін",R:"Келіспеймін", t:"Мен жауапты адам деген беделге ие болуды ұнатамын."},
+{id:43, ax:"JP", L:"Келіспеймін",R:"Келісемін", t:"Маған икемділік пен спонтанды болу жоспардан маңыздырақ."},
+{id:44, ax:"JP", L:"Келіспеймін",R:"Келісемін", t:"Мен жаңа мүмкіндіктерге ашық болу үшін шешімді кейінге қалдырамын."},
+{id:45, ax:"JP", L:"Келіспеймін",R:"Келісемін", t:"Мен бір мезгілде бірнеше жобамен жұмыс жасауды ұнатамын."},
+{id:46, ax:"JP", L:"Келіспеймін",R:"Келісемін", t:"Маған монотонды рутина тез жалықтырады."},
+{id:47, ax:"JP", L:"Келіспеймін",R:"Келісемін", t:"Мен жолда шешім қабылдауды жоспарлаудан ыңғайлырақ деп санаймын."},
+{id:48, ax:"JP", L:"Келіспеймін",R:"Келісемін", t:"Ертеңгі жоспарым кездейсоқ өзгерсе мен ашуланбаймын."},
+// ── A/T × 12 ──────────────────────────────────────
+{id:49, ax:"AT", L:"Келісемін",R:"Келіспеймін", t:"Мен өз мүмкіндіктеріме сенімдімін."},
+{id:50, ax:"AT", L:"Келісемін",R:"Келіспеймін", t:"Мен жіберген қателерімді тез ұмытамын."},
+{id:51, ax:"AT", L:"Келісемін",R:"Келіспеймін", t:"Мен стресс кезінде де өзімді жайлы сезінемін."},
+{id:52, ax:"AT", L:"Келісемін",R:"Келіспеймін", t:"Сын сөз менің мотивациямды жоймайды."},
+{id:53, ax:"AT", L:"Келісемін",R:"Келіспеймін", t:"Маңызды жиналыс алдында мен жайлы боламын."},
+{id:54, ax:"AT", L:"Келісемін",R:"Келіспеймін", t:"Мен өз жетістіктерімді мақтанышпен мойындаймын."},
+{id:55, ax:"AT", L:"Келіспеймін",R:"Келісемін", t:"Мен жиі өзімнің жеткілікті деңгейде екенімді сезінем."},
+{id:56, ax:"AT", L:"Келіспеймін",R:"Келісемін", t:"Мен жиі болашақ туралы алаңдаймын."},
+{id:57, ax:"AT", L:"Келіспеймін",R:"Келісемін", t:"Маңызды жұмыс аяқталса да мен жиі жақсырақ болуы мүмкін еді деп ойлаймын."},
+{id:58, ax:"AT", L:"Келіспеймін",R:"Келісемін", t:"Кішігірім сәтсіздіктер де мені ұзақ уақыт алаңдатады."},
+{id:59, ax:"AT", L:"Келіспеймін",R:"Келісемін", t:"Мен жиі өзімнің шешімдерімді күмән астына аламын."},
+{id:60, ax:"AT", L:"Келіспеймін",R:"Келісемін", t:"Мен жиі жетіспейтін нәрсеге назар аударамын, бар нәрсеге емес."},
+];
+
+// ════════════════════════════════════════════════════
+// 16 TYPE DEFINITIONS
+// ════════════════════════════════════════════════════
+const TYPES = {
+INTJ:{name:"Стратег",role:"Аналитик",slogan:'"Білім — ең үлкен күш"',color:"#4b5563",
+  desc:"Сирек кездесетін, бірақ ерекше стратегиялық ақылдың иесі. Ұзақ мерзімді жоспарлар мен кешенді жүйелерді жасауда тең жоқ. Тәуелсіз, сыни, мақсатқа бағытталған. Бетіне тура айтып, өз мақсатына нық жүреді.",
+  work:"Жалғыз немесе кішкентай командада жақсы жұмыс жасайды. Нақты мақсаты болса өте тиімді. Рутина мен микроменеджментті ұнатпайды.",
+  majors:["Computer Science","Artificial Intelligence","Mathematics","Physics","Economics","Strategic Management"],
+  careers:["Стратегиялық аналитик","Программист","Зерттеуші","Инвестициялық аналитик","Заңгер"],
+  unis:[["Sabancı University","uni/sabanci.html"],["Bilkent (Ankara)","universities.html"],["Koç University","universities.html"]],
+  famous:["Илон Маск","Стивен Хокинг","Никола Тесла"],
+  str:["Стратегиялық ойлау","Тәуелсіздік","Жоғары стандарт","Аналитика"],
+  weak:["Эмоциялық байланыс аз","Кейде тым сыни","Жалғыз жұмыс тенденциясы"]},
+
+INTP:{name:"Логик",role:"Аналитик",slogan:'"Теория — барлық нәрсенің астауы"',color:"#4b5563",
+  desc:"Шексіз интеллектуалдық қызығушылықтың иесі. Теориялар мен мүмкіндіктерді зерттейді. Ашық ойлы, объективті, икемді. Дәйексіздікке шыдамсыз.",
+  work:"Зерттеу мен талдауда жарқырайды. Структура емес, ой еркіндігін қалайды. Дедлайнды ұнатпаса да нәтижеге жетеді.",
+  majors:["Computer Science","Mathematics","Philosophy","Physics","Data Science","Cognitive Science"],
+  careers:["Data Scientist","Математик","Программист","Зерттеуші","Философ"],
+  unis:[["Sabancı University","uni/sabanci.html"],["Özyeğin University","uni/ozyegin.html"],["TED University","uni/ted.html"]],
+  famous:["Альберт Эйнштейн","Билл Гейтс","Чарльз Дарвин"],
+  str:["Логикалық талдау","Объективтілік","Шығармашыл ойлау","Теориялық база"],
+  weak:["Прокрастинация","Қарым-қатынас","Эмоцияны жасырады"]},
+
+ENTJ:{name:"Командир",role:"Аналитик",slogan:'"Жетекшілік — менің табиғатым"',color:"#dc2626",
+  desc:"Табиғи туа лидер. Стратегиялық жоспарлайды, тиімді шешім қабылдайды, командасын жетектейді. Тиімділік пен нәтижені ең жоғары бағалайды.",
+  work:"Үлкен жобалар мен командаларды жетектеуде тамаша. Жоспарлы жұмыс жасайды. Некомпетенттілікке шыдамсыз.",
+  majors:["Business Administration","Management","Economics","Law","Political Science"],
+  careers:["CEO","Топ менеджер","Заңгер","Саясаткер","Кәсіпкер"],
+  unis:[["Sabancı University","uni/sabanci.html"],["Bahçeşehir University","uni/bahcesehir.html"],["Kadir Has University","uni/kadir-has.html"]],
+  famous:["Стив Джобс","Маргарет Тэтчер","Гордон Рамзи"],
+  str:["Лидерлік","Стратегия","Шешімділік","Тиімділік"],
+  weak:["Эмоцияны ескермейді","Кейде доминантты","Сыннан ашуланады"]},
+
+ENTP:{name:"Полемист",role:"Аналитик",slogan:'"Жаңаша ойла — жаңаша жаса"',color:"#f59e0b",
+  desc:"Интеллектуалды жарысты сүйетін батыл новатор. Шаблонды бұзып, жаңашыл шешімдер ұсынады. Мүмкіндіктерді пайдаланып үлгереді.",
+  work:"Бастамаларда күшті, аяқтауда кемшін. Жылдам ойлайды. Рутина жұмысына жарамайды — инновация керек.",
+  majors:["Entrepreneurship","Marketing","Law","Computer Science","Psychology"],
+  careers:["Стартап негізін қалаушы","Маркетолог","Консультант","Заңгер","Дизайнер"],
+  unis:[["Özyeğin University","uni/ozyegin.html"],["Bahçeşehir University","uni/bahcesehir.html"],["Sabancı University","uni/sabanci.html"]],
+  famous:["Томас Эдисон","Никола Тесла","Марк Твен"],
+  str:["Жаңашылдық","Харизма","Пікірсайыс","Икемділік"],
+  weak:["Фокус кем","Рутина жоқ","Аяқтамайды"]},
+
+INFJ:{name:"Провайдер",role:"Дипломат",slogan:'"Адамзат үшін өзгеріс жасаймын"',color:"#7c3aed",
+  desc:"Ең сирек кездесетін тип. Адамдарды терең түсінеді, болашақты алдын ала сезінеді. Принципті, мінсіздікке ұмтылушы, эмпатиялы идеалист.",
+  work:"Адамдарға нақты көмек беретін мамандықтарда жарқырайды. Мағыналы жұмыс керек, жай ақша емес.",
+  majors:["Psychology","Social Work","Medicine","Education","Writing","Counseling"],
+  careers:["Психолог","Дәрігер","Мұғалім","Жазушы","Терапевт"],
+  unis:[["Acıbadem University","uni/acibadem.html"],["TED University","uni/ted.html"],["Uskudar University","uni/uskudar.html"]],
+  famous:["Мартин Лютер Кинг","Мать Тереза","Нельсон Мандела"],
+  str:["Эмпатия","Болжампаздық","Принциптілік","Шығармашылық"],
+  weak:["Перфекционизм","Burnout","Шегара қоя алмайды"]},
+
+INFP:{name:"Медиатор",role:"Дипломат",slogan:'"Арманда шындық бар"',color:"#7c3aed",
+  desc:"Өзінің ішкі дүниесінде өмір сүретін идеалист. Жеке құндылықтары бойынша шешім қабылдайды. Шығармашыл, эмпатиялы, ашық жүректі.",
+  work:"Творчестволық бостандық болса дамиды. Конфликтті жатсынады. Мағыналы жұмысты ақшалы жұмыстан жоғары қояды.",
+  majors:["Psychology","Literature","Fine Arts","Social Work","Education","Music"],
+  careers:["Жазушы","Психолог","Педагог","Суретші","Журналист"],
+  unis:[["TED University","uni/ted.html"],["Yaşar University","uni/yasar.html"],["Bahçeşehir University","uni/bahcesehir.html"]],
+  famous:["Уильям Шекспир","Дж.Р.Р. Толкин","Фрэнк Оушен"],
+  str:["Шығармашылық","Эмпатия","Идеализм","Ашықтық"],
+  weak:["Практикалық емес","Сынды қабылдау қиын","Шешімсіздік"]},
+
+ENFJ:{name:"Протагонист",role:"Дипломат",slogan:'"Адамдарды шабыттандырамын"',color:"#059669",
+  desc:"Харизматикалық, шабыттандырушы лидер. Адамдарды дамытады, топты жетектейді. Оқыту мен коучингте тамаша. Эмпатиялы, ұйымшыл, адал.",
+  work:"Адамдармен тікелей жұмыс жасауды жақсы көреді. Конфликтті шешуде шебер. Топ жетекшісі рөліне туа сай.",
+  majors:["Education","Psychology","Political Science","HR Management","Social Work","Communication"],
+  careers:["Мұғалім","HR менеджер","Саясаткер","Коуч","Консультант"],
+  unis:[["TED University","uni/ted.html"],["Bahçeşehir University","uni/bahcesehir.html"],["Kadir Has University","uni/kadir-has.html"]],
+  famous:["Барак Обама","Опра Уинфри","Малала Юсуфзай"],
+  str:["Лидерлік","Эмпатия","Коммуникация","Шабыттандыру"],
+  weak:["Өзін ұмытады","Сынға сезімтал","Артық сенімді"]},
+
+ENFP:{name:"Белсенді",role:"Дипломат",slogan:'"Мүмкіндік бәрінде бар"',color:"#059669",
+  desc:"Энергиялы, шабытты, адамдарды жақсы көретін. Жаңа мүмкіндіктерді іздейді. Спонтанды, оптимист, шығармашыл. Стандартты бұзуды жақсы көреді.",
+  work:"Творчестволық еркіндік берілгенде жарқырайды. Монотонды жұмысқа жарамайды. Командада шабыт береді.",
+  majors:["Marketing","Communication","Psychology","Design","Arts","Entrepreneurship"],
+  careers:["Маркетолог","Дизайнер","PR маман","Психолог","Кәсіпкер"],
+  unis:[["Bahçeşehir University","uni/bahcesehir.html"],["Özyeğin University","uni/ozyegin.html"],["Aydin University","uni/aydin.html"]],
+  famous:["Робин Уильямс","Эллен Дедженерес","Фарида Хайдари"],
+  str:["Энергия","Шығармашылық","Коммуникация","Оптимизм"],
+  weak:["Фокус кем","Аяқтамайды","Гиперактивтілік"]},
+
+ISTJ:{name:"Логист",role:"Сентинел",slogan:'"Уәде беріп, ұстаймын"',color:"#374151",
+  desc:"Сенімді, жауапты, практикалық. Дәстүр мен тәртіпті бағалайды. Ережелерді сақтайды, детальдарға назар аударады. Есеп, заң, медицинада тамаша.",
+  work:"Нақты жауапкершілік пен анықталған рөлде жақсы жұмыс жасайды. Дедлайнды ерте орындайды.",
+  majors:["Accounting","Law","Medicine","Engineering","Computer Science","Finance"],
+  careers:["Бухгалтер","Заңгер","Инженер","Дәрігер","IT маман"],
+  unis:[["Sabancı University","uni/sabanci.html"],["TED University","uni/ted.html"],["Acıbadem University","uni/acibadem.html"]],
+  famous:["Джефф Безос","Кондолиза Райс","Ангела Меркель"],
+  str:["Жауапкершілік","Тиянақтылық","Ұйымшылдық","Сенімділік"],
+  weak:["Икемсіздік","Жаңалықтан қорқу","Эмоцияны білдірмейді"]},
+
+ISFJ:{name:"Қорғаушы",role:"Сентинел",slogan:'"Сенің жайлылығың — менің мақсатым"',color:"#0891b2",
+  desc:"Жылы жүректі, жауапты, өзгелерге қамқор. Адал, мейірімді, дәстүрді ұстанады. Медицина мен педагогикада айрықша.",
+  work:"Адамдарға тікелей көмек беретін ортада дамиды. Структуралы жұмысты жақсы көреді. Жанжалды жатсынады.",
+  majors:["Nursing","Education","Social Work","Psychology","Medicine","Pharmacy"],
+  careers:["Медбике","Мұғалім","Психолог","Фармацевт","Әлеуметтік жұмысшы"],
+  unis:[["Acıbadem University","uni/acibadem.html"],["TED University","uni/ted.html"],["Uskudar University","uni/uskudar.html"]],
+  famous:["Мать Тереза","Бейонсе","Кейт Миддлтон"],
+  str:["Мейірімділік","Жауапкершілік","Сенімділік","Практикалық"],
+  weak:["Шегара қоя алмайды","Өзін ұмытады","Өзгеріске қарсы"]},
+
+ESTJ:{name:"Басшы",role:"Сентинел",slogan:'"Ереже — тәртіптің негізі"',color:"#374151",
+  desc:"Ұйымдасқан, шешімді, нәтижеге бағытталған. Тәртіп пен жүйені ұнатады. Іскерлік пен мемлекеттік қызметте табысты.",
+  work:"Анықталған иерархиямен жұмыс жасайды. Командасын нақты мақсатқа жетелейді. Бюрократияны жақсы меңгереді.",
+  majors:["Business Administration","Law","Public Administration","Engineering","Finance"],
+  careers:["Менеджер","Заңгер","Мемлекеттік қызметші","Инженер","Банкир"],
+  unis:[["Sabancı University","uni/sabanci.html"],["Bahçeşehir University","uni/bahcesehir.html"],["Kadir Has University","uni/kadir-has.html"]],
+  famous:["Хиллари Клинтон","Сония Сотомайор","Линдон Джонсон"],
+  str:["Ұйымдастыру","Лидерлік","Шешімділік","Сенімділік"],
+  weak:["Иілмеу","Эмпатия кем","Кейде қатал"]},
+
+ESFJ:{name:"Консул",role:"Сентинел",slogan:'"Бірге күштіміз"',color:"#0891b2",
+  desc:"Адамдарды жақсы көретін, қоғамдастықты бағалайтын. Топта гармония жасайды. Адал, жауапты, практикалық.",
+  work:"Адамдармен тікелей жұмыс ортасында дамиды. Командалық жобаларда жарқырайды. Жалғыз жұмыс шаршатады.",
+  majors:["Education","Nursing","Social Work","HR Management","Communication","Tourism"],
+  careers:["Мұғалім","Медбике","HR маман","Event Manager","Туризм"],
+  unis:[["TED University","uni/ted.html"],["Uskudar University","uni/uskudar.html"],["Aydin University","uni/aydin.html"]],
+  famous:["Тейлор Свифт","Билл Клинтон","Хью Джекман"],
+  str:["Коммуникация","Командалық рух","Жауапкершілік","Эмпатия"],
+  weak:["Сынға қарсылық","Тым тәуелді","Шегара жоқ"]},
+
+ISTP:{name:"Шебер",role:"Зерттеуші",slogan:'"Жаса, талда, жетілдір"',color:"#6b7280",
+  desc:"Бақылаушы және практикалық. Механизмдер мен жүйелерді зерттейді. Тез үйренеді, тәуелсіз, икемді.",
+  work:"Нақты, практикалық жұмысты ұнатады. Дағдарыс кезінде сабырлы. Рутина тез жалықтырады.",
+  majors:["Engineering","Computer Science","Mechanics","Forensics","Architecture","Electronics"],
+  careers:["Инженер","Программист","Техник","Сот сарапшысы","Архитектор"],
+  unis:[["Sabancı University","uni/sabanci.html"],["Özyeğin University","uni/ozyegin.html"],["Bahçeşehir University","uni/bahcesehir.html"]],
+  famous:["Майкл Джордан","Брюс Ли","Стив Возняк"],
+  str:["Практикалық","Логика","Дағдарыс кезінде сабырлы","Икемді"],
+  weak:["Эмоцияны жасырады","Ұзақ мерзімді жоспар жоқ","Бейтарап"]},
+
+ISFP:{name:"Авантюрист",role:"Зерттеуші",slogan:'"Сезім — ең жақсы бағдар"',color:"#db2777",
+  desc:"Жайдары, эстетикалық сезімі дамыған, шығармашыл. Бостандықты ұнатады. Өнер мен дизайнда табиғи дарын.",
+  work:"Шығармашылық еркіндігі бар ортада дамиды. Адамдармен тікелей байланыс ыңғайлы. Иерархияны жатсынады.",
+  majors:["Graphic Design","Fine Arts","Fashion Design","Photography","Interior Design","Music"],
+  careers:["Дизайнер","Суретші","Фотограф","Музыкант","Модельер"],
+  unis:[["Bahçeşehir University","uni/bahcesehir.html"],["Aydin University","uni/aydin.html"],["Yaşar University","uni/yasar.html"]],
+  famous:["Майкл Джексон","Бритни Спирс","Фрида Кало"],
+  str:["Эстетика","Эмпатия","Икемділік","Спонтанды"],
+  weak:["Ұйымшылдық кем","Мақсатсыздық","Шегара жоқ"]},
+
+ESTP:{name:"Кәсіпкер",role:"Зерттеуші",slogan:'"Тез жүр, жылдам ойла"',color:"#b91c1c",
+  desc:"Энергиялы, практикалық, тәуекелге дайын. Қазіргі сәтті бағалайды. Бизнес пен спортта табысты. Харизматикалық.",
+  work:"Жылдам нәтиже беретін ортада жарқырайды. Ережелерді бұзуға дайын. Теориядан гөрі практика ұнайды.",
+  majors:["Business","Marketing","Sports Science","Law","Entrepreneurship","Finance"],
+  careers:["Сатушы","Кәсіпкер","Спорт тренері","Маркетолог","Брокер"],
+  unis:[["Özyeğin University","uni/ozyegin.html"],["Bahçeşehir University","uni/bahcesehir.html"],["Kadir Has University","uni/kadir-has.html"]],
+  famous:["Дональд Трамп","Эрнест Хемингуэй","Мадонна"],
+  str:["Энергия","Практикалық","Тәуекел","Харизма"],
+  weak:["Ұзақ мерзімді жоспар жоқ","Импульсивті","Рутина жатсынады"]},
+
+ESFP:{name:"Ойын-сауық шебері",role:"Зерттеуші",slogan:'"Өмір — мереке!"',color:"#ea580c",
+  desc:"Спонтанды, энергиялы, адамдарды жақсы көретін. Сахнада жарқырайды. Практикалық, икемді, мейірімді.",
+  work:"Серпінді, адамдармен толы ортада дамиды. Монотонды жұмысты жатсынады. Ынтымақтастықта жарқырайды.",
+  majors:["Performing Arts","Tourism","Communication","Education","Event Management","Marketing"],
+  careers:["Актер","Тренер","Event manager","Мұғалім","Турагент"],
+  unis:[["Aydin University","uni/aydin.html"],["Bahçeşehir University","uni/bahcesehir.html"],["Uskudar University","uni/uskudar.html"]],
+  famous:["Адель","Уилл Смит","Мэрилин Монро"],
+  str:["Энергия","Спонтанды","Мейірімділік","Практикалық"],
+  weak:["Ұзақ мерзімді жоспар жоқ","Шегара жоқ","Фокус кем"]},
+};
+
+// ════════════════════════════════════════════════════
+// RENDER
+// ════════════════════════════════════════════════════
+const ANS = {};
+
+const BLOCKS = [
+  {ax:"EI", icon:"⚡", color:"#3b82f6", title:"Энергия бағыты", sub:"Экстраверт (E) пе — Интроверт (I) пе?"},
+  {ax:"SN", icon:"🔭", color:"#10b981", title:"Ақпарат қабылдау", sub:"Сенсорлық (S) па — Интуитивті (N) ме?"},
+  {ax:"TF", icon:"⚖️", color:"#f59e0b", title:"Шешім қабылдау", sub:"Ойлаушы (T) па — Сезімдік (F) пе?"},
+  {ax:"JP", icon:"🗓️", color:"#ec4899", title:"Өмір стилі", sub:"Жоспарлаушы (J) па — Икемді (P) пе?"},
+  {ax:"AT", icon:"🧘", color:"#8b5cf6", title:"Сәйкестік (Identity)", sub:"Сенімді (A) пе — Толқымалы (T) пе?"},
+];
+
+
+function getCurrentLang() {
+  return localStorage.getItem("lang") || "kz";
+}
+
+function setText(selector, value) {
+  const el = document.querySelector(selector);
+  if (el) el.textContent = value;
+}
+
+function applyRecommendationI18n() {
+  const lang = getCurrentLang();
+
+  setText('[data-rec="navHome"]', UI.navHome[lang]);
+  setText('[data-rec="navSpecialties"]', UI.navSpecialties[lang]);
+  setText('[data-rec="navUniversities"]', UI.navUniversities[lang]);
+  setText('[data-rec="navPreparation"]', UI.navPreparation[lang]);
+  setText('[data-rec="navFeed"]', UI.navFeed[lang]);
+  setText('[data-rec="navLanguage"]', UI.navLanguage[lang]);
+  setText('[data-rec="navProfile"]', UI.navProfile[lang]);
+
+  setText('[data-rec="heroTitle"]', UI.heroTitle[lang]);
+  setText('[data-rec="heroDesc"]', UI.heroDesc[lang]);
+
+  setText('[data-rec="badge1"]', UI.badge1[lang]);
+  setText('[data-rec="badge2"]', UI.badge2[lang]);
+  setText('[data-rec="badge3"]', UI.badge3[lang]);
+  setText('[data-rec="badge4"]', UI.badge4[lang]);
+
+  setText('[data-rec="submit"]', UI.submit[lang]);
+  setText('[data-rec="answerAll"]', UI.answerAll[lang]);
+
+  setText('[data-rec="majorsTitle"]', UI.majorsTitle[lang]);
+  setText('[data-rec="careersTitle"]', UI.careersTitle[lang]);
+  setText('[data-rec="unisTitle"]', UI.unisTitle[lang]);
+  setText('[data-rec="famousTitle"]', UI.famousTitle[lang]);
+  setText('[data-rec="aboutTitle"]', UI.aboutTitle[lang]);
+  setText('[data-rec="strongTitle"]', UI.strongTitle[lang]);
+  setText('[data-rec="weakTitle"]', UI.weakTitle[lang]);
+  setText('[data-rec="workTitle"]', UI.workTitle[lang]);
+
+  setText('[data-rec="saveBtn"]', UI.saveBtn[lang]);
+  setText('[data-rec="uniBtn"]', UI.uniBtn[lang]);
+  setText('[data-rec="specBtn"]', UI.specBtn[lang]);
+  setText('[data-rec="retakeBtn"]', UI.retakeBtn[lang]);
+}
+
+document.addEventListener("DOMContentLoaded", applyRecommendationI18n);
+window.applyRecommendationI18n = applyRecommendationI18n;
+
+function renderQs() {
+  const area = document.getElementById("qArea");
+  area.innerHTML = BLOCKS.map(blk => {
+    const qs = QS.filter(q => q.ax === blk.ax);
+    return `
+      <div class="blk-hdr">
+        <div class="blk-icon" style="background:${blk.color}22;color:${blk.color}">${blk.icon}</div>
+        <div><div class="blk-title">${blk.title}</div><div class="blk-sub">${blk.sub}</div></div>
+      </div>
+      ${qs.map(q => `
+        <div class="q-block" id="qc${q.id}">
+          <div class="q-num">Сұрақ ${q.id} / 60 · ${q.ax}</div>
+          <div class="q-text">${q.t}</div>
+          <div class="q-scale">
+            <div class="q-pole">${q.L}</div>
+            <div class="q-btns" id="qb${q.id}">
+              ${[1,2,3,4,5,6,7].map(v=>`<button class="q-btn" onclick="pick(${q.id},${v})">${v}</button>`).join("")}
+            </div>
+            <div class="q-pole r">${q.R}</div>
+          </div>
+        </div>
+      `).join("")}
+    `;
+  }).join("");
+}
+
+function pick(id, v) {
+  ANS[id] = v;
+  document.querySelectorAll(`#qb${id} .q-btn`).forEach((b,i)=>b.classList.toggle("sel",i+1===v));
+  document.getElementById("qc"+id).className = "q-block answered";
+  // progress
+  const done = Object.keys(ANS).length;
+  const pct = Math.round(done/60*100);
+  document.getElementById("pFill").style.width = pct+"%";
+  document.getElementById("pText").textContent = done+" / 60 сұрақ";
+  document.getElementById("pPct").textContent = pct+"%";
+  const hint = document.getElementById("subHint");
+  if(done===60){
+      var allDoneTexts={kz:"✅ Барлық сұрақтарға жауап бердіңіз!",ru:"✅ Вы ответили на все вопросы!",en:"✅ You have answered all questions!",tr:"✅ Tüm soruları yanıtladınız!"};
+      var cl=((localStorage.getItem("lang")||"kz").toLowerCase()==="kk"?"kz":(localStorage.getItem("lang")||"kz").toLowerCase());
+      hint.textContent=allDoneTexts[cl]||allDoneTexts.kz;
+      hint.style.color="#34d399";
+    }
+  else{hint.textContent=(60-done)+" сұрақ қалды";hint.style.color="var(--muted)";}
+}
+
+// ════════════════════════════════════════════════════
+// CALCULATE
+// ════════════════════════════════════════════════════
+function calcMBTI() {
+  const missed = QS.filter(q=>!ANS[q.id]);
+  if(missed.length){
+    missed.forEach(q=>{const c=document.getElementById("qc"+q.id);if(c)c.className="q-block unanswered";});
+    const first = missed[0];
+    document.getElementById("qc"+first.id).scrollIntoView({behavior:"smooth",block:"center"});
+    alert(`⚠️ ${missed.length} сұраққа жауап берілмеді!\nЖауап берілмегендер қызылмен белгіленді.`);
+    return;
+  }
+
+  // Tally each axis: low val = left pole, high val = right pole
+  // EI: 1=I, 7=E  |  SN: 1=S, 7=N  |  TF: 1=T, 7=F  |  JP: 1=J, 7=P  |  AT: 1=A, 7=T
+  const score = {EI:{L:0,R:0}, SN:{L:0,R:0}, TF:{L:0,R:0}, JP:{L:0,R:0}, AT:{L:0,R:0}};
+  QS.forEach(q=>{
+    const v = ANS[q.id];
+    score[q.ax].L += (8-v);  // 1→7, 7→1
+    score[q.ax].R += v;       // 1→1, 7→7
+  });
+
+  const max = 12*7;
+  const pct = ax => Math.round(score[ax].R / max * 100);
+
+  const EIp = pct("EI"), SNp = pct("SN"), TFp = pct("TF"), JPp = pct("JP"), ATp = pct("AT");
+
+  const code =
+    (EIp>=50?"E":"I") +
+    (SNp>=50?"N":"S") +
+    (TFp>=50?"F":"T") +
+    (JPp>=50?"P":"J");
+  const variant = code + (ATp>=50?"-T":"-A");
+
+  showResult(code, variant, {EIp,SNp,TFp,JPp,ATp});
+}
+
+function showResult(code, variant, s) {
+  const t = TYPES[code];
+  // Banner
+  document.getElementById("typeBanner").style.background = `linear-gradient(135deg,${t.color},${t.color}99)`;
+  document.getElementById("tCode").textContent = code;
+  document.getElementById("tVariant").textContent = variant;
+  var nameI18n = window.__mbtiNameI18n && window.__mbtiNameI18n[code] ? window.__mbtiNameI18n[code] : {kz:t.name};
+  var curLangN = ((localStorage.getItem("lang")||"kz").toLowerCase()==="kk"?"kz":(localStorage.getItem("lang")||"kz").toLowerCase());
+  document.getElementById("tName").textContent = nameI18n[curLangN]||t.name;
+  var roleI18n = window.__mbtiRoleI18n && window.__mbtiRoleI18n[t.role] ? window.__mbtiRoleI18n[t.role] : {kz:t.role};
+  document.getElementById("tRole").textContent = roleI18n[curLangN]||t.role;
+  document.getElementById("tSlogan").textContent = t.slogan;
+
+  // 5 axes
+  const axes = [
+    {letter:s.EIp>=50?"E":"I", label:s.EIp>=50?"Экстраверт":"Интроверт", pct:s.EIp>=50?s.EIp:100-s.EIp},
+    {letter:s.SNp>=50?"N":"S", label:s.SNp>=50?"Интуитивті":"Сенсорлық", pct:s.SNp>=50?s.SNp:100-s.SNp},
+    {letter:s.TFp>=50?"F":"T", label:s.TFp>=50?"Сезімдік":"Ойлаушы",    pct:s.TFp>=50?s.TFp:100-s.TFp},
+    {letter:s.JPp>=50?"P":"J", label:s.JPp>=50?"Икемді":"Жоспарлаушы",   pct:s.JPp>=50?s.JPp:100-s.JPp},
+    {letter:s.ATp>=50?"T":"A", label:s.ATp>=50?"Толқымалы":"Сенімді",    pct:s.ATp>=50?s.ATp:100-s.ATp},
+  ];
+  document.getElementById("axesWrap").innerHTML = axes.map(a=>`
+    <div class="ax-card">
+      <div class="ax-letter">${a.letter}</div>
+      <div class="ax-label">${a.label}</div>
+      <div class="ax-pct">${a.pct}%</div>
+      <div class="ax-bar"><div class="ax-fill" style="width:${a.pct}%;background:${TYPES[code].color}"></div></div>
+    </div>
+  `).join("");
+
+  // Majors
+  document.getElementById("rMajors").innerHTML = t.majors.map((m,i)=>`
+    <div class="match-row">
+      <span style="font-weight:${i<3?700:500}">${m}</span>
+      <span class="val">${Math.max(68,88-i*4)}%</span>
+    </div>`).join("");
+
+  // Careers
+  document.getElementById("rCareers").innerHTML = t.careers.map((c,i)=>
+    `<span class="tag ${i===0?'hi':''}">${c}</span>`).join("");
+
+  // Unis
+  document.getElementById("rUnis").innerHTML = t.unis.map(([n,u])=>`
+    <div class="match-row">
+      <a href="${u}" style="color:#ffd6de;font-weight:700;text-decoration:none;">${n}</a>
+      <span class="val">✓</span>
+    </div>`).join("");
+
+  // Famous
+  document.getElementById("rFamous").innerHTML = t.famous.map(n=>`
+    <div class="fam-card"><div class="fam-name">${n}</div><div class="fam-role">${code}</div></div>`).join("");
+
+  // Desc + work
+  document.getElementById("rDesc").textContent = t.desc;
+  document.getElementById("rWork").textContent = t.work;
+
+  // Strengths / weaknesses
+  document.getElementById("rStr").innerHTML = t.str.map(s=>`<span class="tag hi">${s}</span>`).join("");
+  document.getElementById("rWeak").innerHTML = t.weak.map(w=>`<span class="tag">${w}</span>`).join("");
+
+  document.getElementById("resWrap").style.display="block";
+  document.getElementById("resWrap").scrollIntoView({behavior:"smooth"});
+
+  // Save
+  const email = localStorage.getItem("currentUserEmail")||"guest";
+  localStorage.setItem("u_"+email+"_mbti", JSON.stringify({
+    type:code, variant, name:t.name, role:t.role, scores:s,
+    date:new Date().toLocaleDateString("kk-KZ")
+  }));
+}
+
+function saveToProfile() {
+  const email = localStorage.getItem("currentUserEmail") || "guest";
+  const m = JSON.parse(localStorage.getItem("u_" + email + "_mbti") || "{}");
+  
+  if (!m.type) {
+    const msgs = { kz: "Алдымен тестті аяқтаңыз!", ru: "Сначала завершите тест!", en: "Complete the test first!", tr: "Önce testi tamamlayın!" };
+    const lang = (localStorage.getItem("lang") || "kz").toLowerCase();
+    alert(msgs[lang] || msgs.kz);
+    return;
+  }
+
+  const result = {
+    type: m.type,
+    variant: m.variant,
+    name: m.name,
+    role: m.role,
+    date: new Date().toLocaleDateString("kk-KZ"),
+    pattern: m.variant + " — " + m.name,
+    description: m.role || ""
+  };
+
+  localStorage.setItem("u_" + email + "_careerTestResult", JSON.stringify(result));
+
+  try {
+    const pdKey = "u_" + email + "_profileData";
+    const pd = JSON.parse(localStorage.getItem(pdKey) || "{}");
+    pd.mbtiType = m.variant;
+    pd.mbtiName = m.name;
+    localStorage.setItem(pdKey, JSON.stringify(pd));
+  } catch(e) {}
+
+  const msgs = { kz: "✅ Нәтиже профильге сақталды!\nТипіңіз: ", ru: "✅ Результат сохранён!\nВаш тип: ", en: "✅ Result saved!\nYour type: ", tr: "✅ Sonuç kaydedildi!\nTipiniz: " };
+  const lang = (localStorage.getItem("lang") || "kz").toLowerCase();
+  alert((msgs[lang] || msgs.kz) + m.variant + " — " + m.name + " (" + m.role + ")");
+}
+function retake(){
+  QS.forEach(q=>{
+    delete ANS[q.id];
+    const c=document.getElementById("qc"+q.id);
+    if(c)c.className="q-block";
+    document.querySelectorAll("#qb"+q.id+" .q-btn").forEach(b=>b.classList.remove("sel"));
+  });
+  document.getElementById("pFill").style.width="0%";
+  document.getElementById("pText").textContent="0 / 60 сұрақ";
+  document.getElementById("pPct").textContent="0%";
+  var answerAllTexts={kz:"Барлық 60 сұраққа жауап беріңіз",ru:"Ответьте на все 60 вопросов",en:"Answer all 60 questions",tr:"60 sorunun tümünü yanıtlayın"};
+  var cl2=((localStorage.getItem("lang")||"kz").toLowerCase()==="kk"?"kz":(localStorage.getItem("lang")||"kz").toLowerCase());
+  document.getElementById("subHint").textContent=answerAllTexts[cl2]||answerAllTexts.kz;
+  document.getElementById("subHint").style.color="var(--muted)";
+  document.getElementById("resWrap").style.display="none";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+
+// ─── MBTI тип/рөл i18n кестесі (4 тіл) ─────────────────────────────────────
+window.__mbtiNameI18n = {
+  INTJ:{kz:'Стратег',    ru:'Стратег',       en:'Strategist',   tr:'Stratejist'},
+  INTP:{kz:'Логик',      ru:'Логик',         en:'Logician',     tr:'Mantıkçı'},
+  ENTJ:{kz:'Командир',   ru:'Командир',      en:'Commander',    tr:'Komutan'},
+  ENTP:{kz:'Полемист',   ru:'Полемист',      en:'Debater',      tr:'Tartışmacı'},
+  INFJ:{kz:'Провайдер',  ru:'Поборник',      en:'Advocate',     tr:'Savunucu'},
+  INFP:{kz:'Медиатор',   ru:'Медиатор',      en:'Mediator',     tr:'Arabulucu'},
+  ENFJ:{kz:'Протагонист',ru:'Протагонист',   en:'Protagonist',  tr:'Protagonist'},
+  ENFP:{kz:'Белсенді',   ru:'Активист',      en:'Campaigner',   tr:'Kampanyacı'},
+  ISTJ:{kz:'Логист',     ru:'Логист',        en:'Logistician',  tr:'Lojistikçi'},
+  ISFJ:{kz:'Қорғаушы',   ru:'Защитник',      en:'Defender',     tr:'Savunucu'},
+  ESTJ:{kz:'Басшы',      ru:'Руководитель',  en:'Executive',    tr:'Yönetici'},
+  ESFJ:{kz:'Консул',     ru:'Консул',        en:'Consul',       tr:'Konsül'},
+  ISTP:{kz:'Шебер',      ru:'Виртуоз',       en:'Virtuoso',     tr:'Virtüöz'},
+  ISFP:{kz:'Авантюрист', ru:'Авантюрист',    en:'Adventurer',   tr:'Maceraperest'},
+  ESTP:{kz:'Кәсіпкер',   ru:'Делец',         en:'Entrepreneur', tr:'Girişimci'},
+  ESFP:{kz:'Ойын-сауық шебері',ru:'Развлекатель',en:'Entertainer',tr:'Eğlendirici'},
+};
+window.__mbtiRoleI18n = {
+  'Аналитик':{kz:'Аналитик',  ru:'Аналитик', en:'Analyst',   tr:'Analist'},
+  'Дипломат': {kz:'Дипломат',  ru:'Дипломат', en:'Diplomat',  tr:'Diplomat'},
+  'Сентинел': {kz:'Сентинел',  ru:'Страж',    en:'Sentinel',  tr:'Bekçi'},
+  'Зерттеуші':{kz:'Зерттеуші', ru:'Искатель', en:'Explorer',  tr:'Kaşif'},
+};
+
+document.addEventListener("DOMContentLoaded",function(){
+  renderQs();
+  try{var l=localStorage.getItem("lang")||"kz";if(typeof applyTranslations==="function")applyTranslations(l);}catch(e){}
+});
+</script>
+
+<script src="js/i18n-core.js"></script>
+<script src="js/i18n-recommendation.js"></script>
+</body>
+</html>

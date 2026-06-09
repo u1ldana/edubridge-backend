@@ -38,7 +38,7 @@ app.use(cors({
 }));
  
 app.use(express.json({ limit: '2mb' }));
-app.use(express.static(path.join(__dirname, '..', 'diploma_fixed')));
+app.use(express.static(path.join(__dirname, 'diploma_fixed')));
  
 // ── Rate Limiting ─────────────────────────────────────────
 const authLimiter = rateLimit({

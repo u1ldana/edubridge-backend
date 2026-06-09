@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="EduBridge Türkiye — Жеке кабинетке кіру">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | EduBridge Türkiye</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="login">
+  <div class="bg-blur bg-blur-1"></div>
+  <div class="bg-blur bg-blur-2"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">EduBridge <span>Türkiye</span></a>
+
+      <nav class="nav">
+        <a href="index.html" data-i18n="nav-home">Басты бет</a>
+        <a href="specialties.html" data-i18n="nav-specialties">Мамандықтар</a>
+        <a href="universities.html" data-i18n="nav-universities">Университеттер</a>
+        <a href="preparation.html" data-i18n="nav-preparation">Дайындық</a>
+        <a href="feed.html" data-i18n="nav-feed">Лента</a>
+        
+        
+      </nav>
+
+      <div class="header-actions">
+        <div class="language-dropdown">
+          <button type="button" class="language-btn" onclick="toggleLanguageMenu()">
+            <span data-i18n="nav-language">Тіл</span>
+            <span class="arrow">▾</span>
+          </button>
+
+          <div class="language-menu" id="languageMenu">
+            <a href="#" onclick="setLang('kz'); return false;">Қазақша</a>
+            <a href="#" onclick="setLang('ru'); return false;">Русский</a>
+            <a href="#" onclick="setLang('en'); return false;">English</a>
+            <a href="#" onclick="setLang('tr'); return false;">Türkçe</a>
+          </div>
+        </div>
+
+        <a href="login.html" class="login-btn active" data-i18n="nav-login">Кіру</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="login-section">
+      <div class="container">
+        <div class="login-box glass">
+          <span class="section-label" data-i18n="login-label">Кіру</span>
+          <h1 data-i18n="login-title">Жеке кабинетке кіру</h1>
+          <p data-i18n="login-desc">
+            Университеттерді сақтау, өтініш барысын бақылау және құжаттарды басқару үшін аккаунтыңызға кіріңіз.
+          </p>
+
+          <form class="login-form" id="loginForm">
+            <label for="loginEmail" data-i18n="login-email">Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              name="email"
+              data-placeholder-i18n="login-email-placeholder"
+              placeholder="example@mail.com"
+              required
+            />
+
+            <label for="loginPassword" data-i18n="login-password">Құпиясөз</label>
+            <input
+              type="password"
+              id="loginPassword"
+              name="password"
+              data-placeholder-i18n="login-password-placeholder"
+              placeholder="********"
+              required
+            />
+
+            <button type="submit" class="btn btn-primary full-width" data-i18n="login-btn-main">
+              Кіру
+            </button>
+          </form>
+
+          <p id="loginMessage" class="form-message"></p>
+
+          <div class="login-links">
+            <a href="#" data-i18n="login-forgot">Құпиясөзді ұмыттыңыз ба?</a>
+            <a href="register.html" data-i18n="login-register">Тіркелу</a>
+          </div>
+
+          <div class="login-bottom-text">
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="logo footer-logo">EduBridge <span>Türkiye</span></div>
+        <p data-i18n="footer-text">© 2026 EduBridge Türkiye. Барлық құқықтар қорғалған.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Email</a>
+        <a href="#" data-i18n="footer-contact">Байланыс</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+  <script src="js/database.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/backend-client.js"></script>
+  <script src="js/i18n-core.js"></script>
+  <script src="js/i18n-login.js"></script>
+
+  <script>
+    // Login бетіне redirect болғанда - navbar-ды дұрыс көрсету
+    // Егер role сақталып қалса да, updateAuthButton дұрыс жұмыс істесін
+    document.addEventListener("DOMContentLoaded", function() {
+      // Тек login.html-де: logout арқылы келген болса __REAL_LOGOUT__ тексер
+      // updateAuthButton автоматты шақырылады script.js арқылы
+      // Бірақ navbar-да Logout батырмасы қалып кетсе — оны жою
+      var existingLogout = document.querySelector(".logout-header-btn");
+      var role = localStorage.getItem("role");
+      if (!role && existingLogout) {
+        existingLogout.remove();
+      }
+    });
+  </script>
+
+</body>
+</html>
