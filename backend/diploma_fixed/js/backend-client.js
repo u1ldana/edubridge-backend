@@ -1,5 +1,5 @@
-﻿(function(){
-  const API = window.BACKEND_URL || 'https://edubridge-backend-production-1e14.up.railway.app';
+(function(){
+  const API = window.BACKEND_URL || 'http://localhost:3000';
   const $ = (s,r=document)=>r.querySelector(s);
   const LS = {
     get(k,f){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):f; }catch(e){ return f; } },
