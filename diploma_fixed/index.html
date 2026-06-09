@@ -2,14 +2,14 @@
 <html lang="kk">
 <head>
   <style>
-    @media (max-width: 480px) {
-      .hero-big { font-size: 2rem !important; line-height: 1 !important; }
-      .hero-content h1 { font-size: 1.3rem !important; }
-      .nav { display: none !important; }
-      .header-inner { flex-wrap: wrap; }
-      .header-actions { width: 100%; }
-    }
-    </style>
+@media (max-width: 860px) {
+  .hero-grid { display: flex; flex-direction: column; }
+  .hero-side { display: none; }
+  .hero-content h1 { font-size: 1.6rem !important; }
+  .hero-big { font-size: 2.2rem !important; line-height: 1.1 !important; }
+  #hero-sub1, #hero-sub2 { font-size: 1rem !important; }
+}
+</style>
     
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="description" content="EduBridge TГјrkiye вЂ” ТљР°Р·Р°Т›СЃС‚Р°РЅ СЃС‚СѓРґРµРЅС‚С‚РµСЂС–РЅРµ РўТЇСЂРєРёСЏ СѓРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂС–РЅРµ С‚ТЇСЃСѓ РїР»Р°С‚С„РѕСЂРјР°СЃС‹">
@@ -26,12 +26,12 @@
   <link rel="stylesheet" href="css/style.css" />
 
 <style>
-@media (max-width: 480px) {
-  .hero-big { font-size: 2rem !important; line-height: 1 !important; }
-  .hero-content h1 { font-size: 1.3rem !important; }
-  .nav { display: none !important; }
-  .header-inner { flex-wrap: wrap; }
-  .header-actions { width: 100%; }
+@media (max-width: 860px) {
+  .hero-grid { display: flex; flex-direction: column; }
+  .hero-side { display: none; }
+  .hero-content h1 { font-size: 1.6rem !important; }
+  .hero-big { font-size: 2.2rem !important; line-height: 1.1 !important; }
+  #hero-sub1, #hero-sub2 { font-size: 1rem !important; }
 }
 </style>
 </head>
@@ -362,20 +362,13 @@
 </div>
 
 <style>
-@keyframes pulseBubble {
-  0%,100%{transform:translateY(0);box-shadow:0 4px 20px rgba(166,15,45,.5);}
-  50%{transform:translateY(-4px);box-shadow:0 8px 28px rgba(166,15,45,.7);}
+@media (max-width: 860px) {
+  .hero-grid { display: flex; flex-direction: column; }
+  .hero-side { display: none; }
+  .hero-content h1 { font-size: 1.6rem !important; }
+  .hero-big { font-size: 2.2rem !important; line-height: 1.1 !important; }
+  #hero-sub1, #hero-sub2 { font-size: 1rem !important; }
 }
-@keyframes slideUp {
-  from{opacity:0;transform:translateY(10px);}
-  to{opacity:1;transform:none;}
-}
-#aiBubbleMessages::-webkit-scrollbar{width:3px;}
-#aiBubbleMessages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px;}
-.ai-msg-user{display:flex;flex-direction:row-reverse;gap:8px;align-items:flex-start;}
-.ai-msg-user .ai-bubble{background:linear-gradient(135deg,#a60f2d,#701930);border-radius:14px;border-top-right-radius:4px;padding:10px 13px;font-size:13px;color:#fff;line-height:1.5;max-width:240px;}
-.ai-msg-bot{display:flex;gap:8px;align-items:flex-start;}
-.ai-msg-bot .ai-bubble{background:rgba(255,255,255,.08);border-radius:14px;border-top-left-radius:4px;padding:10px 13px;font-size:13px;color:#f3dfe4;line-height:1.5;max-width:240px;}
 </style>
 
 <script>
@@ -527,3 +520,4 @@ window.sendAIBubble = async function() {
   <script src="js/i18n-core.js"></script>
   <script src="js/i18n-index.js"></script>
 </body>
+
