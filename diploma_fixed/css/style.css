@@ -1901,3 +1901,31 @@ body[data-page="specialties"] .search-bar button {
   border-radius: 18px;
   box-shadow: 0 18px 45px rgba(166,15,45,.38);
 }
+
+
+/* ── MOBILE FIXES ── */
+@media (max-width: 480px) {
+  .header-inner {
+    flex-wrap: wrap;
+    min-height: auto;
+    padding: 14px 0;
+    gap: 10px;
+  }
+  .nav {
+    order: 3;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+  .nav a { font-size: 0.85rem; }
+  .header-actions { order: 2; margin-left: auto; }
+  .logo { font-size: 1.1rem; }
+  .hero-big { font-size: clamp(2rem, 13vw, 3.5rem) !important; }
+  .hero-content h1 { font-size: clamp(1.4rem, 5vw, 2rem) !important; }
+  #hero-sub1, #hero-sub2 { font-size: 1rem !important; }
+  .hero { padding-top: 24px; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .hero-buttons, .cta-buttons { flex-direction: column; }
+  .btn { width: 100%; text-align: center; }
+  .hero-grid, .cards-grid, .steps-grid, .prep-grid { grid-template-columns: 1fr !important; }
+}
