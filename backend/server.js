@@ -1,4 +1,4 @@
-require('dotenv').config();
+﻿require('dotenv').config();
 const express      = require('express');
 const cors         = require('cors');
 const path         = require('path');
@@ -543,3 +543,4 @@ app.post("/api/create-checkout-session", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
