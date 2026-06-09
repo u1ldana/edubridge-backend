@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="kk">
 <head>
   <style>
@@ -12,10 +12,10 @@
     </style>
     
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="EduBridge Türkiye — Қазақстан студенттеріне Түркия университеттеріне түсу платформасы">
+    <meta name="description" content="EduBridge TГјrkiye вЂ” ТљР°Р·Р°Т›СЃС‚Р°РЅ СЃС‚СѓРґРµРЅС‚С‚РµСЂС–РЅРµ РўТЇСЂРєРёСЏ СѓРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂС–РЅРµ С‚ТЇСЃСѓ РїР»Р°С‚С„РѕСЂРјР°СЃС‹">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EduBridge Türkiye</title>
+  <title>EduBridge TГјrkiye</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,6 +24,16 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="css/style.css" />
+
+<style>
+@media (max-width: 480px) {
+  .hero-big { font-size: 2rem !important; line-height: 1 !important; }
+  .hero-content h1 { font-size: 1.3rem !important; }
+  .nav { display: none !important; }
+  .header-inner { flex-wrap: wrap; }
+  .header-actions { width: 100%; }
+}
+</style>
 </head>
 <body data-page="home">
   <div class="bg-blur bg-blur-1"></div>
@@ -31,14 +41,14 @@
 
   <header class="header">
     <div class="container header-inner">
-      <a href="index.html" class="logo">EduBridge <span>Türkiye</span></a>
+      <a href="index.html" class="logo">EduBridge <span>TГјrkiye</span></a>
 
       <nav class="nav">
-        <a href="index.html" data-i18n="nav-home">Басты бет</a>
-        <a href="specialties.html" data-i18n="nav-specialties">Мамандықтар</a>
-        <a href="universities.html" data-i18n="nav-universities">Университеттер</a>
-        <a href="preparation.html" data-i18n="nav-preparation">Дайындық</a>
-        <a href="feed.html" data-i18n="nav-feed">Лента</a>
+        <a href="index.html" data-i18n="nav-home">Р‘Р°СЃС‚С‹ Р±РµС‚</a>
+        <a href="specialties.html" data-i18n="nav-specialties">РњР°РјР°РЅРґС‹Т›С‚Р°СЂ</a>
+        <a href="universities.html" data-i18n="nav-universities">РЈРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂ</a>
+        <a href="preparation.html" data-i18n="nav-preparation">Р”Р°Р№С‹РЅРґС‹Т›</a>
+        <a href="feed.html" data-i18n="nav-feed">Р›РµРЅС‚Р°</a>
         
         
       </nav>
@@ -46,19 +56,19 @@
       <div class="header-actions">
         <div class="language-dropdown">
           <button type="button" class="language-btn" onclick="toggleLanguageMenu()">
-            <span data-i18n="nav-language">Тіл</span>
-            <span class="arrow">▾</span>
+            <span data-i18n="nav-language">РўС–Р»</span>
+            <span class="arrow">в–ѕ</span>
           </button>
 
           <div class="language-menu" id="languageMenu">
-            <a href="#" onclick="setLang('kz'); return false;">Қазақша</a>
-            <a href="#" onclick="setLang('ru'); return false;">Русский</a>
+            <a href="#" onclick="setLang('kz'); return false;">ТљР°Р·Р°Т›С€Р°</a>
+            <a href="#" onclick="setLang('ru'); return false;">Р СѓСЃСЃРєРёР№</a>
             <a href="#" onclick="setLang('en'); return false;">English</a>
-            <a href="#" onclick="setLang('tr'); return false;">Türkçe</a>
+            <a href="#" onclick="setLang('tr'); return false;">TГјrkГ§e</a>
           </div>
         </div>
 
-        <a href="login.html" class="login-btn" data-i18n="nav-login">Кіру</a>
+        <a href="login.html" class="login-btn" data-i18n="nav-login">РљС–СЂСѓ</a>
       </div>
     </div>
   </header>
@@ -68,38 +78,38 @@
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="hero-badge" data-i18n="hero-badge">
-            Түркия университеттеріне түсу платформасы
+            РўТЇСЂРєРёСЏ СѓРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂС–РЅРµ С‚ТЇСЃСѓ РїР»Р°С‚С„РѕСЂРјР°СЃС‹
           </div>
 
           <h1>
-            <span class="hero-big" data-i18n="hero-big">ТҮРКИЯДА ОҚУ</span><br />
-            <span data-i18n="hero-sub1">бакалавриат, магистратура және докторантура</span><br />
-            <span data-i18n="hero-sub2">гранттар мен жеңілдіктер мүмкіндігімен</span>
+            <span class="hero-big" data-i18n="hero-big">РўТ®Р РљРРЇР”Рђ РћТљРЈ</span><br />
+            <span data-i18n="hero-sub1">Р±Р°РєР°Р»Р°РІСЂРёР°С‚, РјР°РіРёСЃС‚СЂР°С‚СѓСЂР° Р¶У™РЅРµ РґРѕРєС‚РѕСЂР°РЅС‚СѓСЂР°</span><br />
+            <span data-i18n="hero-sub2">РіСЂР°РЅС‚С‚Р°СЂ РјРµРЅ Р¶РµТЈС–Р»РґС–РєС‚РµСЂ РјТЇРјРєС–РЅРґС–РіС–РјРµРЅ</span>
           </h1>
 
           <p data-i18n="hero-desc">
-            Өзіңе сәйкес университетті таңда, түсу шарттарын салыстыр және
-            барлық процесті бір жерден басқар.
+            УЁР·С–ТЈРµ СЃУ™Р№РєРµСЃ СѓРЅРёРІРµСЂСЃРёС‚РµС‚С‚С– С‚Р°ТЈРґР°, С‚ТЇСЃСѓ С€Р°СЂС‚С‚Р°СЂС‹РЅ СЃР°Р»С‹СЃС‚С‹СЂ Р¶У™РЅРµ
+            Р±Р°СЂР»С‹Т› РїСЂРѕС†РµСЃС‚С– Р±С–СЂ Р¶РµСЂРґРµРЅ Р±Р°СЃТ›Р°СЂ.
           </p>
 
           <div class="hero-buttons">
             <a href="universities.html" class="btn btn-primary" data-i18n="btn-universities">
-              Университеттерді қарау
+              РЈРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂРґС– Т›Р°СЂР°Сѓ
             </a>
             <a href="specialties.html" class="btn btn-secondary" data-i18n="btn-specialties">
-              Мамандықтарды көру
+              РњР°РјР°РЅРґС‹Т›С‚Р°СЂРґС‹ РєУ©СЂСѓ
             </a>
           </div>
 
           <div class="hero-stats">
             <div class="stat-card">
               <h3>100+</h3>
-              <p data-i18n="stat-1">университет</p>
+              <p data-i18n="stat-1">СѓРЅРёРІРµСЂСЃРёС‚РµС‚</p>
             </div>
 
             <div class="stat-card">
               <h3>24/7</h3>
-              <p data-i18n="stat-3">ыңғайлы қолжетімділік</p>
+              <p data-i18n="stat-3">С‹ТЈТ“Р°Р№Р»С‹ Т›РѕР»Р¶РµС‚С–РјРґС–Р»С–Рє</p>
             </div>
           </div>
         </div>
@@ -112,13 +122,13 @@
               <span class="dot dot-3"></span>
             </div>
 
-            <h3 data-i18n="panel-title">Негізгі мүмкіндіктер</h3>
+            <h3 data-i18n="panel-title">РќРµРіС–Р·РіС– РјТЇРјРєС–РЅРґС–РєС‚РµСЂ</h3>
 
             <div class="feature-mini-list">
-              <div class="feature-mini-item" data-i18n="mini-1">Қала бойынша іздеу</div>
-              <div class="feature-mini-item" data-i18n="mini-2">Құжат чек-листі</div>
-              <div class="feature-mini-item" data-i18n="mini-3">Дедлайндарды бақылау</div>
-              <div class="feature-mini-item" data-i18n="mini-4">Гранттар мен жеңілдіктер</div>
+              <div class="feature-mini-item" data-i18n="mini-1">ТљР°Р»Р° Р±РѕР№С‹РЅС€Р° С–Р·РґРµСѓ</div>
+              <div class="feature-mini-item" data-i18n="mini-2">ТљТ±Р¶Р°С‚ С‡РµРє-Р»РёСЃС‚С–</div>
+              <div class="feature-mini-item" data-i18n="mini-3">Р”РµРґР»Р°Р№РЅРґР°СЂРґС‹ Р±Р°Т›С‹Р»Р°Сѓ</div>
+              <div class="feature-mini-item" data-i18n="mini-4">Р“СЂР°РЅС‚С‚Р°СЂ РјРµРЅ Р¶РµТЈС–Р»РґС–РєС‚РµСЂ</div>
             </div>
           </div>
         </div>
@@ -128,51 +138,51 @@
     <section class="section sections-preview">
       <div class="container">
         <div class="section-heading">
-          <span class="section-label" data-i18n="sections-label">Негізгі бағыттар</span>
-          <h2 data-i18n="sections-title">Сайттың негізгі бөлімдері</h2>
+          <span class="section-label" data-i18n="sections-label">РќРµРіС–Р·РіС– Р±Р°Т“С‹С‚С‚Р°СЂ</span>
+          <h2 data-i18n="sections-title">РЎР°Р№С‚С‚С‹ТЈ РЅРµРіС–Р·РіС– Р±У©Р»С–РјРґРµСЂС–</h2>
           <p data-i18n="sections-desc">
-            Қажетті ақпаратқа бірден өтетіндей етіп жасалған негізгі модульдер.
+            ТљР°Р¶РµС‚С‚С– Р°Т›РїР°СЂР°С‚Т›Р° Р±С–СЂРґРµРЅ У©С‚РµС‚С–РЅРґРµР№ РµС‚С–Рї Р¶Р°СЃР°Р»Т“Р°РЅ РЅРµРіС–Р·РіС– РјРѕРґСѓР»СЊРґРµСЂ.
           </p>
         </div>
 
         <div class="cards-grid">
           <article class="main-card">
-            <div class="card-icon">🎓</div>
-            <h3 data-i18n="card-1-title">Мамандықтар</h3>
+            <div class="card-icon">рџЋ“</div>
+            <h3 data-i18n="card-1-title">РњР°РјР°РЅРґС‹Т›С‚Р°СЂ</h3>
             <p data-i18n="card-1-desc">
-              Қызығатын бағыт бойынша университеттерді табу.
+              ТљС‹Р·С‹Т“Р°С‚С‹РЅ Р±Р°Т“С‹С‚ Р±РѕР№С‹РЅС€Р° СѓРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂРґС– С‚Р°Р±Сѓ.
             </p>
           </article>
 
           <article class="main-card">
-            <div class="card-icon">🏛️</div>
-            <h3 data-i18n="card-2-title">Университеттер</h3>
+            <div class="card-icon">рџЏ›пёЏ</div>
+            <h3 data-i18n="card-2-title">РЈРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂ</h3>
             <p data-i18n="card-2-desc">
-              Қала, рейтинг және оқу түрі бойынша таңдау.
+              ТљР°Р»Р°, СЂРµР№С‚РёРЅРі Р¶У™РЅРµ РѕТ›Сѓ С‚ТЇСЂС– Р±РѕР№С‹РЅС€Р° С‚Р°ТЈРґР°Сѓ.
             </p>
           </article>
 
           <article class="main-card">
-            <div class="card-icon">📂</div>
-            <h3 data-i18n="card-3-title">Дайындық</h3>
+            <div class="card-icon">рџ“‚</div>
+            <h3 data-i18n="card-3-title">Р”Р°Р№С‹РЅРґС‹Т›</h3>
             <p data-i18n="card-3-desc">
-              Құжаттар, дедлайндар және түсу кезеңдері.
+              ТљТ±Р¶Р°С‚С‚Р°СЂ, РґРµРґР»Р°Р№РЅРґР°СЂ Р¶У™РЅРµ С‚ТЇСЃСѓ РєРµР·РµТЈРґРµСЂС–.
             </p>
           </article>
 
           <article class="main-card">
-            <div class="card-icon">✨</div>
-            <h3 data-i18n="card-4-title">Лента</h3>
+            <div class="card-icon">вњЁ</div>
+            <h3 data-i18n="card-4-title">Р›РµРЅС‚Р°</h3>
             <p data-i18n="card-4-desc">
-              Жаңалықтар, гранттар және пайдалы ақпарат.
+              Р–Р°ТЈР°Р»С‹Т›С‚Р°СЂ, РіСЂР°РЅС‚С‚Р°СЂ Р¶У™РЅРµ РїР°Р№РґР°Р»С‹ Р°Т›РїР°СЂР°С‚.
             </p>
           </article>
 
           <article class="main-card" style="border-color:rgba(166,15,45,.4)">
-            <div class="card-icon">🤖</div>
-            <h3 data-i18n="card-ai-title">AI Кеңесші</h3>
-            <p data-i18n="card-ai-desc">Университет пен грант туралы сұрағыңды AI-ға қой — бірден жауап аласың.</p>
-            <a href="chat.html" class="btn btn-primary" style="margin-top:16px;display:inline-block;font-size:13px;padding:10px 18px" data-i18n="card-ai-btn">Сұрақ қою →</a>
+            <div class="card-icon">рџ¤–</div>
+            <h3 data-i18n="card-ai-title">AI РљРµТЈРµСЃС€С–</h3>
+            <p data-i18n="card-ai-desc">РЈРЅРёРІРµСЂСЃРёС‚РµС‚ РїРµРЅ РіСЂР°РЅС‚ С‚СѓСЂР°Р»С‹ СЃТ±СЂР°Т“С‹ТЈРґС‹ AI-Т“Р° Т›РѕР№ вЂ” Р±С–СЂРґРµРЅ Р¶Р°СѓР°Рї Р°Р»Р°СЃС‹ТЈ.</p>
+            <a href="chat.html" class="btn btn-primary" style="margin-top:16px;display:inline-block;font-size:13px;padding:10px 18px" data-i18n="card-ai-btn">РЎТ±СЂР°Т› Т›РѕСЋ в†’</a>
           </article>
 
 
@@ -183,36 +193,36 @@
     <section class="section how-it-works">
       <div class="container">
         <div class="section-heading">
-          <span class="section-label" data-i18n="steps-label">Қысқа жол</span>
-          <h2 data-i18n="steps-title">Қалай жұмыс істейді?</h2>
+          <span class="section-label" data-i18n="steps-label">ТљС‹СЃТ›Р° Р¶РѕР»</span>
+          <h2 data-i18n="steps-title">ТљР°Р»Р°Р№ Р¶Т±РјС‹СЃ С–СЃС‚РµР№РґС–?</h2>
           <p data-i18n="steps-desc">
-            Барлық процесс бірнеше қарапайым қадамнан тұрады.
+            Р‘Р°СЂР»С‹Т› РїСЂРѕС†РµСЃСЃ Р±С–СЂРЅРµС€Рµ Т›Р°СЂР°РїР°Р№С‹Рј Т›Р°РґР°РјРЅР°РЅ С‚Т±СЂР°РґС‹.
           </p>
         </div>
 
         <div class="steps-grid">
           <div class="step-card">
             <div class="step-number">01</div>
-            <h3 data-i18n="step-1-title">Мамандықты таңда</h3>
-            <p data-i18n="step-1-desc">Өзіңе қызық бағытты белгілейсің.</p>
+            <h3 data-i18n="step-1-title">РњР°РјР°РЅРґС‹Т›С‚С‹ С‚Р°ТЈРґР°</h3>
+            <p data-i18n="step-1-desc">УЁР·С–ТЈРµ Т›С‹Р·С‹Т› Р±Р°Т“С‹С‚С‚С‹ Р±РµР»РіС–Р»РµР№СЃС–ТЈ.</p>
           </div>
 
           <div class="step-card">
             <div class="step-number">02</div>
-            <h3 data-i18n="step-2-title">Университетті таңда</h3>
-            <p data-i18n="step-2-desc">Шарттар мен мүмкіндіктерді салыстырасың.</p>
+            <h3 data-i18n="step-2-title">РЈРЅРёРІРµСЂСЃРёС‚РµС‚С‚С– С‚Р°ТЈРґР°</h3>
+            <p data-i18n="step-2-desc">РЁР°СЂС‚С‚Р°СЂ РјРµРЅ РјТЇРјРєС–РЅРґС–РєС‚РµСЂРґС– СЃР°Р»С‹СЃС‚С‹СЂР°СЃС‹ТЈ.</p>
           </div>
 
           <div class="step-card">
             <div class="step-number">03</div>
-            <h3 data-i18n="step-3-title">Құжаттарды дайында</h3>
-            <p data-i18n="step-3-desc">Қажетті тізім бойынша дайындаласың.</p>
+            <h3 data-i18n="step-3-title">ТљТ±Р¶Р°С‚С‚Р°СЂРґС‹ РґР°Р№С‹РЅРґР°</h3>
+            <p data-i18n="step-3-desc">ТљР°Р¶РµС‚С‚С– С‚С–Р·С–Рј Р±РѕР№С‹РЅС€Р° РґР°Р№С‹РЅРґР°Р»Р°СЃС‹ТЈ.</p>
           </div>
 
           <div class="step-card">
             <div class="step-number">04</div>
-            <h3 data-i18n="step-4-title">Оқуға түс</h3>
-            <p data-i18n="step-4-desc">Өтініш беріп, процесті бақылайсың.</p>
+            <h3 data-i18n="step-4-title">РћТ›СѓТ“Р° С‚ТЇСЃ</h3>
+            <p data-i18n="step-4-desc">УЁС‚С–РЅС–С€ Р±РµСЂС–Рї, РїСЂРѕС†РµСЃС‚С– Р±Р°Т›С‹Р»Р°Р№СЃС‹ТЈ.</p>
           </div>
         </div>
       </div>
@@ -221,22 +231,22 @@
     <section class="section prep-section">
       <div class="container prep-grid">
         <div class="prep-text">
-          <span class="section-label" data-i18n="prep-label">Дайындық</span>
-          <h2 data-i18n="prep-title">Не дайындау керек?</h2>
+          <span class="section-label" data-i18n="prep-label">Р”Р°Р№С‹РЅРґС‹Т›</span>
+          <h2 data-i18n="prep-title">РќРµ РґР°Р№С‹РЅРґР°Сѓ РєРµСЂРµРє?</h2>
           <p data-i18n="prep-desc">
-            Түсу процесінде қажет негізгі құжаттар мен кезеңдер бір жерде жиналған.
+            РўТЇСЃСѓ РїСЂРѕС†РµСЃС–РЅРґРµ Т›Р°Р¶РµС‚ РЅРµРіС–Р·РіС– Т›Т±Р¶Р°С‚С‚Р°СЂ РјРµРЅ РєРµР·РµТЈРґРµСЂ Р±С–СЂ Р¶РµСЂРґРµ Р¶РёРЅР°Р»Т“Р°РЅ.
           </p>
 
           <a href="preparation.html" class="btn btn-primary" data-i18n="prep-btn">
-            Толық чек-лист көру
+            РўРѕР»С‹Т› С‡РµРє-Р»РёСЃС‚ РєУ©СЂСѓ
           </a>
         </div>
 
         <div class="checklist glass">
-          <div class="check-item" data-i18n="check-1">Паспорт</div>
-          <div class="check-item" data-i18n="check-2">Аттестат / диплом</div>
+          <div class="check-item" data-i18n="check-1">РџР°СЃРїРѕСЂС‚</div>
+          <div class="check-item" data-i18n="check-2">РђС‚С‚РµСЃС‚Р°С‚ / РґРёРїР»РѕРј</div>
           <div class="check-item" data-i18n="check-3">Transcript</div>
-          <div class="check-item" data-i18n="check-5">Мотивациялық хат</div>
+          <div class="check-item" data-i18n="check-5">РњРѕС‚РёРІР°С†РёСЏР»С‹Т› С…Р°С‚</div>
           <div class="check-item" data-i18n="check-6">Recommendation letter</div>
         </div>
       </div>
@@ -245,16 +255,16 @@
     <section class="section cta-section">
       <div class="container cta-box">
         <div>
-          <span class="section-label" data-i18n="cta-label">Бастау</span>
-          <h2 data-i18n="cta-title">Бастауға дайынсың ба?</h2>
+          <span class="section-label" data-i18n="cta-label">Р‘Р°СЃС‚Р°Сѓ</span>
+          <h2 data-i18n="cta-title">Р‘Р°СЃС‚Р°СѓТ“Р° РґР°Р№С‹РЅСЃС‹ТЈ Р±Р°?</h2>
           <p data-i18n="cta-desc">
-            Өзіңе сәйкес университетті тауып, Түркияда оқу жолын бүгін баста.
+            УЁР·С–ТЈРµ СЃУ™Р№РєРµСЃ СѓРЅРёРІРµСЂСЃРёС‚РµС‚С‚С– С‚Р°СѓС‹Рї, РўТЇСЂРєРёСЏРґР° РѕТ›Сѓ Р¶РѕР»С‹РЅ Р±ТЇРіС–РЅ Р±Р°СЃС‚Р°.
           </p>
         </div>
 
         <div class="cta-buttons">
-          <a href="universities.html" class="btn btn-primary" data-i18n="cta-btn-1">Университеттерді қарау</a>
-          <a href="login.html" class="btn btn-secondary" id="cta-btn-2" data-i18n="cta-btn-2">Кіру</a>
+          <a href="universities.html" class="btn btn-primary" data-i18n="cta-btn-1">РЈРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂРґС– Т›Р°СЂР°Сѓ</a>
+          <a href="login.html" class="btn btn-secondary" id="cta-btn-2" data-i18n="cta-btn-2">РљС–СЂСѓ</a>
         </div>
       </div>
     </section>
@@ -263,14 +273,14 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div>
-        <div class="logo footer-logo">EduBridge <span>Türkiye</span></div>
-        <p data-i18n="footer-text">© 2026 EduBridge Türkiye. Барлық құқықтар қорғалған.</p>
+        <div class="logo footer-logo">EduBridge <span>TГјrkiye</span></div>
+        <p data-i18n="footer-text">В© 2026 EduBridge TГјrkiye. Р‘Р°СЂР»С‹Т› Т›Т±Т›С‹Т›С‚Р°СЂ Т›РѕСЂТ“Р°Р»Т“Р°РЅ.</p>
       </div>
 
       <div class="footer-links">
         <a href="#">Instagram</a>
         <a href="#">Email</a>
-        <a href="#" data-i18n="footer-contact">Байланыс</a>
+        <a href="#" data-i18n="footer-contact">Р‘Р°Р№Р»Р°РЅС‹СЃ</a>
       </div>
     </div>
   </footer>
@@ -302,13 +312,13 @@
       display:flex; justify-content:space-between; align-items:center;
     ">
       <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:32px;height:32px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;">🤖</div>
+        <div style="width:32px;height:32px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;">рџ¤–</div>
         <div>
           <div style="font-size:13px;font-weight:800;color:#fff;">EduBridge AI</div>
-          <div style="font-size:11px;color:rgba(255,255,255,.7);">Онлайн · Жауап береді</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.7);">РћРЅР»Р°Р№РЅ В· Р–Р°СѓР°Рї Р±РµСЂРµРґС–</div>
         </div>
       </div>
-      <button onclick="toggleAIBubble()" style="border:none;background:rgba(255,255,255,.15);color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;">✕</button>
+      <button onclick="toggleAIBubble()" style="border:none;background:rgba(255,255,255,.15);color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px;">вњ•</button>
     </div>
     <div id="aiBubbleMessages" style="
       flex:1; overflow-y:auto; padding:16px;
@@ -317,17 +327,17 @@
       scrollbar-width:thin;
     ">
       <div style="display:flex;gap:8px;align-items:flex-start;">
-        <div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div>
+        <div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">рџ¤–</div>
         <div style="background:rgba(255,255,255,.08);border-radius:14px;border-top-left-radius:4px;padding:10px 13px;font-size:13px;color:#f3dfe4;line-height:1.5;max-width:240px;">
-          Сәлем! Мен EduBridge AI кеңесшісімін. Түркия университеттері туралы кез-келген сұрақты қой 👋
+          РЎУ™Р»РµРј! РњРµРЅ EduBridge AI РєРµТЈРµСЃС€С–СЃС–РјС–РЅ. РўТЇСЂРєРёСЏ СѓРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂС– С‚СѓСЂР°Р»С‹ РєРµР·-РєРµР»РіРµРЅ СЃТ±СЂР°Т›С‚С‹ Т›РѕР№ рџ‘‹
         </div>
       </div>
     </div>
     <div style="padding:10px 14px;border-top:1px solid rgba(255,255,255,.08);display:flex;gap:8px;">
-      <input id="aiBubbleInput" type="text" placeholder="Сұрағыңды жаз..."
+      <input id="aiBubbleInput" type="text" placeholder="РЎТ±СЂР°Т“С‹ТЈРґС‹ Р¶Р°Р·..."
         style="flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;color:#fff;padding:9px 12px;font-family:inherit;font-size:13px;outline:none;"
         onkeydown="if(event.key==='Enter')sendAIBubble()"/>
-      <button onclick="sendAIBubble()" style="width:36px;height:36px;background:linear-gradient(135deg,#a60f2d,#701930);border:none;border-radius:10px;color:#fff;font-size:16px;cursor:pointer;">➤</button>
+      <button onclick="sendAIBubble()" style="width:36px;height:36px;background:linear-gradient(135deg,#a60f2d,#701930);border:none;border-radius:10px;color:#fff;font-size:16px;cursor:pointer;">вћ¤</button>
     </div>
   </div>
 
@@ -341,8 +351,8 @@
     display:flex; align-items:center; justify-content:center;
     animation:pulseBubble 2.5s ease-in-out infinite;
     position:relative;
-  " title="AI Кеңесші">
-    🤖
+  " title="AI РљРµТЈРµСЃС€С–">
+    рџ¤–
     <span id="aiBubbleDot" style="
       position:absolute; top:2px; right:2px;
       width:12px; height:12px; background:#22c55e;
@@ -408,18 +418,18 @@ window.sendAIBubble = async function() {
   var typing = document.createElement("div");
   typing.className = "ai-msg-bot";
   typing.id = "aiTyping";
-  typing.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div><div class="ai-bubble"><span style="opacity:.6">●●●</span></div>';
+  typing.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">рџ¤–</div><div class="ai-bubble"><span style="opacity:.6">в—Џв—Џв—Џ</span></div>';
   msgs.appendChild(typing);
   msgs.scrollTop = msgs.scrollHeight;
 
   _aiIsLoading = true;
 
-  // Get API key - Gemini (тегін) немесе Anthropic
+  // Get API key - Gemini (С‚РµРіС–РЅ) РЅРµРјРµСЃРµ Anthropic
   var geminiKey = (window.CONFIG && window.CONFIG.GEMINI_KEY) || localStorage.getItem("gemini_key") || "";
   var anthropicKey = (window.CONFIG && window.CONFIG.ANTHROPIC_KEY) || localStorage.getItem("anthropic_key") || "";
 
   var systemPrompt = (window.CONFIG && window.CONFIG.AI_SYSTEM) || 
-    "Сен EduBridge Türkiye платформасының AI кеңесшісісің. Түркия университеттері, грант, мамандық туралы сұрақтарға қысқа, нақты жауап бер. Қазақ тілінде жауап бер.";
+    "РЎРµРЅ EduBridge TГјrkiye РїР»Р°С‚С„РѕСЂРјР°СЃС‹РЅС‹ТЈ AI РєРµТЈРµСЃС€С–СЃС–СЃС–ТЈ. РўТЇСЂРєРёСЏ СѓРЅРёРІРµСЂСЃРёС‚РµС‚С‚РµСЂС–, РіСЂР°РЅС‚, РјР°РјР°РЅРґС‹Т› С‚СѓСЂР°Р»С‹ СЃТ±СЂР°Т›С‚Р°СЂТ“Р° Т›С‹СЃТ›Р°, РЅР°Т›С‚С‹ Р¶Р°СѓР°Рї Р±РµСЂ. ТљР°Р·Р°Т› С‚С–Р»С–РЅРґРµ Р¶Р°СѓР°Рї Р±РµСЂ.";
 
   try {
     var reply = "";
@@ -427,7 +437,7 @@ window.sendAIBubble = async function() {
     var groqKey = (window.CONFIG && window.CONFIG.GROQ_KEY) || localStorage.getItem("groq_key") || "";
 
     if (groqKey) {
-      // Groq (ТЕГІН, өте жылдам)
+      // Groq (РўР•Р“Р†Рќ, У©С‚Рµ Р¶С‹Р»РґР°Рј)
       var groqRes = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
         headers: {
@@ -446,7 +456,7 @@ window.sendAIBubble = async function() {
       });
       var groqData = await groqRes.json();
       if (groqData.error) throw new Error(groqData.error.message);
-      reply = groqData.choices?.[0]?.message?.content || "Жауап алынбады.";
+      reply = groqData.choices?.[0]?.message?.content || "Р–Р°СѓР°Рї Р°Р»С‹РЅР±Р°РґС‹.";
 
     } else if (geminiKey) {
       // Google Gemini
@@ -456,17 +466,17 @@ window.sendAIBubble = async function() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: systemPrompt + "\n\nСұрақ: " + text }] }],
+            contents: [{ parts: [{ text: systemPrompt + "\n\nРЎТ±СЂР°Т›: " + text }] }],
             generationConfig: { maxOutputTokens: 400, temperature: 0.7 }
           })
         }
       );
       var geminiData = await geminiRes.json();
       if (geminiData.error) throw new Error(geminiData.error.message);
-      reply = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Жауап алынбады.";
+      reply = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Р–Р°СѓР°Рї Р°Р»С‹РЅР±Р°РґС‹.";
 
     } else if (anthropicKey) {
-      // Anthropic Claude (ақылы)
+      // Anthropic Claude (Р°Т›С‹Р»С‹)
       var anthRes = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
         headers: {
@@ -484,16 +494,16 @@ window.sendAIBubble = async function() {
       });
       var anthData = await anthRes.json();
       if (anthData.error) throw new Error(anthData.error.message);
-      reply = anthData.content?.map(function(b){return b.text||"";}).join("") || "Жауап алынбады.";
+      reply = anthData.content?.map(function(b){return b.text||"";}).join("") || "Р–Р°СѓР°Рї Р°Р»С‹РЅР±Р°РґС‹.";
 
     } else {
-      reply = "⚙️ API key жоқ! js/config.js файлында GROQ_KEY қойылған — бірақ CONFIG жүктелмеген болуы мүмкін. Бетті жаңартып көріңіз.";
+      reply = "вљ™пёЏ API key Р¶РѕТ›! js/config.js С„Р°Р№Р»С‹РЅРґР° GROQ_KEY Т›РѕР№С‹Р»Т“Р°РЅ вЂ” Р±С–СЂР°Т› CONFIG Р¶ТЇРєС‚РµР»РјРµРіРµРЅ Р±РѕР»СѓС‹ РјТЇРјРєС–РЅ. Р‘РµС‚С‚С– Р¶Р°ТЈР°СЂС‚С‹Рї РєУ©СЂС–ТЈС–Р·.";
     }
 
     document.getElementById("aiTyping")?.remove();
     var bm = document.createElement("div");
     bm.className = "ai-msg-bot";
-    bm.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div><div class="ai-bubble">' + 
+    bm.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">рџ¤–</div><div class="ai-bubble">' + 
       reply.replace(/\n/g,"<br>").replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>") + 
       "</div>";
     msgs.appendChild(bm);
@@ -502,7 +512,7 @@ window.sendAIBubble = async function() {
     document.getElementById("aiTyping")?.remove();
     var em = document.createElement("div");
     em.className = "ai-msg-bot";
-    em.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🤖</div><div class="ai-bubble" style="color:#f87171;">❌ Қате: ' + e.message + '<br><small>API key дұрыс па?</small></div>';
+    em.innerHTML = '<div style="width:28px;height:28px;background:linear-gradient(135deg,#a60f2d,#701930);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">рџ¤–</div><div class="ai-bubble" style="color:#f87171;">вќЊ ТљР°С‚Рµ: ' + e.message + '<br><small>API key РґТ±СЂС‹СЃ РїР°?</small></div>';
     msgs.appendChild(em);
   }
 
